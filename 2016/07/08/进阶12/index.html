@@ -1,4 +1,327 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="此身愿荷维摩病 永作婆娑无尽灯"><title>进阶第12天 | MFMAL's Blog</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">进阶第12天</h1><a id="logo" href="/.">MFMAL's Blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">进阶第12天</h1><div class="post-meta">Jul 8, 2016<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2016/07/08/进阶12/" href="/2016/07/08/进阶12/#comments" class="ds-thread-count"></a><div class="post-content"><h3 id="01-复习预习"><a href="#01-复习预习" class="headerlink" title="01-复习预习"></a>01-复习预习</h3><h3 id="02-左侧点击两次的bug"><a href="#02-左侧点击两次的bug" class="headerlink" title="02-左侧点击两次的bug"></a>02-左侧点击两次的bug</h3><ul>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="01-复习预习02-左侧点击两次的bug
+步骤:
+点击的时候记录左侧位置
+滑动的时候也记录左侧的位置
+
+
+
+03-控制器获取点击加号的事件
+步骤:
+在cell的xib中添加一个加号按钮,
+监听加号按钮的点击事件.(这个事件在cell中)
+希望动画是由控制器来做,所以,希望点击cell的时候通知到控制器.
+这时,使用代理
+代理写法:
+在cell的.h中 写协议
+在cell的.h中 写协议 的 代理方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进阶第12天">
+<meta property="og:url" content="http://yoursite.com/2016/07/08/进阶12/index.html">
+<meta property="og:site_name" content="MFMAL's Blog">
+<meta property="og:description" content="01-复习预习02-左侧点击两次的bug
+步骤:
+点击的时候记录左侧位置
+滑动的时候也记录左侧的位置
+
+
+
+03-控制器获取点击加号的事件
+步骤:
+在cell的xib中添加一个加号按钮,
+监听加号按钮的点击事件.(这个事件在cell中)
+希望动画是由控制器来做,所以,希望点击cell的时候通知到控制器.
+这时,使用代理
+代理写法:
+在cell的.h中 写协议
+在cell的.h中 写协议 的 代理方">
+<meta property="og:updated_time" content="2016-07-29T11:48:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进阶第12天">
+<meta name="twitter:description" content="01-复习预习02-左侧点击两次的bug
+步骤:
+点击的时候记录左侧位置
+滑动的时候也记录左侧的位置
+
+
+
+03-控制器获取点击加号的事件
+步骤:
+在cell的xib中添加一个加号按钮,
+监听加号按钮的点击事件.(这个事件在cell中)
+希望动画是由控制器来做,所以,希望点击cell的时候通知到控制器.
+这时,使用代理
+代理写法:
+在cell的.h中 写协议
+在cell的.h中 写协议 的 代理方">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/08/进阶12/"/>
+
+  <title> 进阶第12天 | MFMAL's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">MFMAL's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                进阶第12天
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-08T07:53:00+08:00" content="2016-07-08">
+              2016-07-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="01-复习预习"><a href="#01-复习预习" class="headerlink" title="01-复习预习"></a>01-复习预习</h3><h3 id="02-左侧点击两次的bug"><a href="#02-左侧点击两次的bug" class="headerlink" title="02-左侧点击两次的bug"></a>02-左侧点击两次的bug</h3><ul>
 <li>步骤:<ul>
 <li>点击的时候记录左侧位置</li>
 <li>滑动的时候也记录左侧的位置</li>
@@ -144,13 +467,266 @@
 <li>动画框架 pop</li>
 <li>pop 案例 popping</li>
 </ul>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2016/07/08/进阶12/" data-id="cir7wamrj000137s68tgeza7u" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2016/07/29/hello-world/" class="pre">Hello World</a></div><div data-thread-key="2016/07/08/进阶12/" data-title="进阶第12天" data-url="http://yoursite.com/2016/07/08/进阶12/" class="ds-share flat"><div class="ds-share-inline"><ul class="ds-share-icons-16"><li data-toggle="ds-share-icons-more"><a href="javascript:void(0);" class="ds-more">分享到：</a></li><li><a href="javascript:void(0);" data-service="weibo" class="ds-weibo">微博</a></li><li><a href="javascript:void(0);" data-service="qzone" class="ds-qzone">QQ空间</a></li><li><a href="javascript:void(0);" data-service="qqt" class="ds-qqt">腾讯微博</a></li><li><a href="javascript:void(0);" data-service="wechat" class="ds-wechat">微信</a></li></ul><div class="ds-share-icons-more"></div></div></div><div data-thread-key="2016/07/08/进阶12/" data-title="进阶第12天" data-url="http://yoursite.com/2016/07/08/进阶12/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://yoursite.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/08/进阶12/">进阶第12天</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">MFMAL's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'massacreformash'};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/29/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="massacreformash" />
+          <p class="site-author-name" itemprop="name">massacreformash</p>
+          <p class="site-description motion-element" itemprop="description">此身愿荷维摩病 永作婆娑无尽灯</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-复习预习"><span class="nav-number">1.</span> <span class="nav-text">01-复习预习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-左侧点击两次的bug"><span class="nav-number">2.</span> <span class="nav-text">02-左侧点击两次的bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-控制器获取点击加号的事件"><span class="nav-number">3.</span> <span class="nav-text">03-控制器获取点击加号的事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-坐标系转换"><span class="nav-number">4.</span> <span class="nav-text">04-坐标系转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-简单实现直线动画效果"><span class="nav-number">5.</span> <span class="nav-text">05-简单实现直线动画效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-移除红点儿的imageView"><span class="nav-number">6.</span> <span class="nav-text">06-移除红点儿的imageView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-曲线动画"><span class="nav-number">7.</span> <span class="nav-text">07-曲线动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-购物车界面"><span class="nav-number">8.</span> <span class="nav-text">08-购物车界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-曲线动画停到购物车图标的中心点"><span class="nav-number">9.</span> <span class="nav-text">09-曲线动画停到购物车图标的中心点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-右侧cell跳转到详情页面"><span class="nav-number">10.</span> <span class="nav-text">10-右侧cell跳转到详情页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-移动控制器view动画有问题的解决办法"><span class="nav-number">11.</span> <span class="nav-text">11-移动控制器view动画有问题的解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-添加详情页面的collectionView"><span class="nav-number">12.</span> <span class="nav-text">12-添加详情页面的collectionView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-分析数据源的写法"><span class="nav-number">13.</span> <span class="nav-text">13-分析数据源的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-自定义cell显示数据"><span class="nav-number">14.</span> <span class="nav-text">14-自定义cell显示数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-进入页面的偏移量"><span class="nav-number">15.</span> <span class="nav-text">15-进入页面的偏移量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-提示框"><span class="nav-number">16.</span> <span class="nav-text">16-提示框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-自定义控件-集成UIControl"><span class="nav-number">17.</span> <span class="nav-text">17-自定义控件(集成UIControl)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-美团往右再往上的bug"><span class="nav-number">18.</span> <span class="nav-text">18-美团往右再往上的bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xx-完善"><span class="nav-number">19.</span> <span class="nav-text">xx-完善</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">massacreformash</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
