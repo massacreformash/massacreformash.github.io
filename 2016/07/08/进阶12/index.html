@@ -1,142 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>进阶第12天 | MFMAL&#39;s Blog</title>
-  <meta name="description" content="{{theme.description}}" />
-  <meta name="keywords" content="{{theme.keywords}}" />
+  <meta name="description" content="" />
   <meta name="HandheldFriendly" content="True" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="01-复习预习02-左侧点击两次的bug
-步骤:
-点击的时候记录左侧位置
-滑动的时候也记录左侧的位置
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="MFMAL's Blog">
 
-
-
-03-控制器获取点击加号的事件
-步骤:
-在cell的xib中添加一个加号按钮,
-监听加号按钮的点击事件.(这个事件在cell中)
-希望动画是由控制器来做,所以,希望点击cell的时候通知到控制器.
-这时,使用代理
-代理写法:
-在cell的.h中 写协议
-在cell的.h中 写协议 的 代理方">
-<meta property="og:type" content="article">
-<meta property="og:title" content="进阶第12天">
-<meta property="og:url" content="http://yoursite.com/2016/07/08/进阶12/index.html">
-<meta property="og:site_name" content="MFMAL's Blog">
-<meta property="og:description" content="01-复习预习02-左侧点击两次的bug
-步骤:
-点击的时候记录左侧位置
-滑动的时候也记录左侧的位置
-
-
-
-03-控制器获取点击加号的事件
-步骤:
-在cell的xib中添加一个加号按钮,
-监听加号按钮的点击事件.(这个事件在cell中)
-希望动画是由控制器来做,所以,希望点击cell的时候通知到控制器.
-这时,使用代理
-代理写法:
-在cell的.h中 写协议
-在cell的.h中 写协议 的 代理方">
-<meta property="og:updated_time" content="2016-07-29T11:48:16.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进阶第12天">
-<meta name="twitter:description" content="01-复习预习02-左侧点击两次的bug
-步骤:
-点击的时候记录左侧位置
-滑动的时候也记录左侧的位置
-
-
-
-03-控制器获取点击加号的事件
-步骤:
-在cell的xib中添加一个加号按钮,
-监听加号按钮的点击事件.(这个事件在cell中)
-希望动画是由控制器来做,所以,希望点击cell的时候通知到控制器.
-这时,使用代理
-代理写法:
-在cell的.h中 写协议
-在cell的.h中 写协议 的 代理方">
   
   
-    <link rel="icon" href="/favicon.png">
   
+
   
-	<script src="https://use.typekit.net/eyf3hir.js"></script>
-  <script>try{Typekit.load({ async: false });}catch(e){}</script>
-  <link rel="stylesheet" href="/style.css">
-  <script>
-    function setLoadingBarProgress(num) {
-      document.getElementById('loading-bar').style.width=num+"%";
-    }
-  </script>
 </head>
 
-<body>
-  
-  <div id="loading-bar-wrapper">
-  <div id="loading-bar"></div>
-</div>
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
 
-  <script>setLoadingBarProgress(20)</script>
-  
-  <div id="site-wrapper">
-    
-    <header id="header">
-	<div id="header-wrapper" class="clearfix">
-		<a id="logo" href="/">
-			<img src="/images/logo.png" />
-			<span id="site-desc">
-			  otaku keeps alive
-      </span>
-		</a>
-		<button id="site-nav-switch">
-	    <span class="icon icon-menu"></span>
-	  </button>
-	</div>
-	<aside id="site-menu">
-  	<nav>
-  		
-        <a href="/" class="nav-home nav">
-          Home
-        </a>
-      
-        <a href="http://otakism.org/about" class="nav-about nav">
-          About
-        </a>
-      
-        <a href="http://otakism.org/works" class="nav-works nav">
-          Works
-        </a>
-      
-    </nav>
-	</aside>
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">MFMAL's Blog</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
 </header>
-    <script>setLoadingBarProgress(40);</script>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2016-07-07T23:53:00.000Z" itemprop="datePublished">
+          2016-07-08
+      </time>
     
-    <main id="main" role="main">
-      <article id="post-进阶12"
-  class="post article white-box article-type-post"
-  itemscope itemprop="blogPost">
-	<h2 class="title">
-  	<a href="/2016/07/08/进阶12/">
-    	进阶第12天
-    </a>
-  </h2>
-	<time>
-	  7月 8, 2016
-	</time>
-	<section class="content">
-  	<div class="article-entry" itemprop="articleBody">
-    	<h3 id="01-复习预习"><a href="#01-复习预习" class="headerlink" title="01-复习预习"></a>01-复习预习</h3><h3 id="02-左侧点击两次的bug"><a href="#02-左侧点击两次的bug" class="headerlink" title="02-左侧点击两次的bug"></a>02-左侧点击两次的bug</h3><ul>
+</span>
+    <h1 class="post-title">进阶第12天</h1>
+    <section class="post-content">
+      <h3 id="01-复习预习"><a href="#01-复习预习" class="headerlink" title="01-复习预习"></a>01-复习预习</h3><h3 id="02-左侧点击两次的bug"><a href="#02-左侧点击两次的bug" class="headerlink" title="02-左侧点击两次的bug"></a>02-左侧点击两次的bug</h3><ul>
 <li>步骤:<ul>
 <li>点击的时候记录左侧位置</li>
 <li>滑动的时候也记录左侧的位置</li>
@@ -283,84 +198,89 @@
 <li>pop 案例 popping</li>
 </ul>
 
-  	</div>
-	  
-	  <div class="article-tags tags">
-		  
-	  </div>
-	</section>
-</article>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>massacreformash</h4>
+    <p>作为挨踢业的伪设计狮伪技术牛 搬过砖也种过地：爱看、爱听、爱玩儿、爱折腾、机械水电、泥瓦木匠啥都来</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=作为挨踢业的伪设计狮伪技术牛 搬过砖也种过地：爱看、爱听、爱玩儿、爱折腾、机械水电、泥瓦木匠啥都来 ?url=http://yoursite.com/2016/07/08/进阶12/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2016/07/08/进阶12/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/07/08/进阶12/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2016/07/08/进阶12/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
 
-
-
-      <script>setLoadingBarProgress(60);</script>
-    </main>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
     
-    <footer id="footer" class="clearfix">
-  
-  
-	<div class="search">
-	  <form name="searchform" id="searchform">
-	    <input type="text" id="search_input" class="search_input st-default-search-input"
-	      data-list-highlight="true" data-list-value-completion="true" placeholder="Looking for something?" />
-	    <button type="submit" class="search-bar-trigger">
-	      <span class="icon icon-search"></span>
-	    </button>
-	  </form>
-	</div>
-	
-
-	<div class="social-wrapper">
-  	
-      
-        <a href="https://github.com/artchen" class="social github"
-          target="_blank" rel="external">
-          <span class="icon icon-github"></span>
-        </a>
-      
-        <a href="https://twitter.com/otakism" class="social twitter"
-          target="_blank" rel="external">
-          <span class="icon icon-twitter"></span>
-        </a>
-      
-        <a href="/atom.xml" class="social feed"
-          target="_blank" rel="external">
-          <span class="icon icon-feed"></span>
-        </a>
-      
-        <a href="https://plus.google.com/+ArtChenOtakism/posts" class="social google"
-          target="_blank" rel="external">
-          <span class="icon icon-google"></span>
-        </a>
-      
-        <a href="http://weibo.com/otakism/" class="social weibo"
-          target="_blank" rel="external">
-          <span class="icon icon-weibo"></span>
-        </a>
-      
+    <a class="newer-posts" href="/2016/07/29/hello-world/">
+        ← Hello World
+    </a>
     
+    <span class="icon-logo">•</span>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">MFMAL's Blog</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
-  
-  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
-  <div>&copy; <a href="/">MFMAL&#39;s Blog</a></div>
-  
 </footer>
 
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-    <script>setLoadingBarProgress(80);</script>
-    
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
   </div>
+</div>
 
-  
+<nav  class="outer-nav top horizontal">
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+          <a class="icon-home"  href="/"><span>Home</span></a>
 
-<script src="/js/jquery.fitvids.js"></script>
-<script src="/js/app.js"></script>
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
 
+          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-  <script>setLoadingBarProgress(100);</script>
-  
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
 </body>
 </html>
