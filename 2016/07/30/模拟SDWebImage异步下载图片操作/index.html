@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="项目笔记,第三方框架," />
+  <meta name="keywords" content="第三方框架,项目笔记," />
 
 
 
@@ -88,7 +88,17 @@
 搭建界面
 复习loadView
 体会AFNetWoring的使用
-复习tableView的简单实用">
+复习tableView的简单实用
+
+操作步骤准备工作
+新建项目
+定义属性
+123@interface ViewController ()@property (nonatomic, strong) UITableView *tableView;@end
+
+重写loadView  
+
+
+1234- (void)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟SDWebImage异步下载图片操作">
 <meta property="og:url" content="http://yoursite.com/2016/07/30/模拟SDWebImage异步下载图片操作/index.html">
@@ -97,16 +107,36 @@
 搭建界面
 复习loadView
 体会AFNetWoring的使用
-复习tableView的简单实用">
+复习tableView的简单实用
+
+操作步骤准备工作
+新建项目
+定义属性
+123@interface ViewController ()@property (nonatomic, strong) UITableView *tableView;@end
+
+重写loadView  
+
+
+1234- (void)">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg">
-<meta property="og:updated_time" content="2016-07-30T11:25:41.000Z">
+<meta property="og:updated_time" content="2016-07-30T12:02:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模拟SDWebImage异步下载图片操作">
 <meta name="twitter:description" content="异步图像-搭建界面目标
 搭建界面
 复习loadView
 体会AFNetWoring的使用
-复习tableView的简单实用">
+复习tableView的简单实用
+
+操作步骤准备工作
+新建项目
+定义属性
+123@interface ViewController ()@property (nonatomic, strong) UITableView *tableView;@end
+
+重写loadView  
+
+
+1234- (void)">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg">
 
 
@@ -375,7 +405,60 @@
 <li>体会<code>AFNetWoring</code>的使用</li>
 <li>复习tableView的简单实用</li>
 </ul>
-
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ul>
+<li>新建项目</li>
+<li><p>定义属性</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@interface</span> ViewController ()</div><div class="line"><span class="variable">@property</span> (nonatomic, strong) UITableView *tableView;</div><div class="line"><span class="variable">@end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重写<code>loadView</code>  </p>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)loadView &#123;</div><div class="line">    _tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectZero</span> style:<span class="built_in">UITableViewStylePlain</span>];</div><div class="line">    <span class="keyword">self</span>.view = _tableView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试</p>
+</blockquote>
+<p>####加载网络数据</p>
+<ul>
+<li>添加<code>AFNetWorking</code>网络框架</li>
+<li>导入头文件</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"AFNetworking.h"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>实现loadData方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)loadData &#123;</div><div class="line">    <span class="built_in">NSString</span> *urlString = <span class="string">@"https://raw.githubusercontent.com/massacreformash/DemoRepository/master/apps.json"</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//初始化一个网络请求的管理器</span></div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    [manager GET:urlString parameters:<span class="literal">nil</span> progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"success: %@"</span>, responseObject);</div><div class="line">    &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</div><div class="line">        <span class="comment">//在公司开发的话 错误请求一定要处理</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"fail: %@"</span>, error);</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="绑定表格数据"><a href="#绑定表格数据" class="headerlink" title="绑定表格数据"></a>绑定表格数据</h4><ul>
+<li>定义tableView可重用标识符</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *cellId = <span class="string">@"cell"</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>设置数据源并注册原型cell</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)loadView &#123;</div><div class="line">    _tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectZero</span> style:<span class="built_in">UITableViewStylePlain</span>];</div><div class="line"></div><div class="line">    _tableView.dataSource = <span class="keyword">self</span>;</div><div class="line">    [_tableView registerClass:[<span class="built_in">UITableViewCell</span> <span class="keyword">class</span>] forCellReuseIdentifier:cellId];</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.view = _tableView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>遵守协议</li>
+</ul>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@interface</span> ViewController () <span class="variable">&lt;UITableViewDataSource&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>实现协议方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma mark - 数据源方法</span></div><div class="line"></div><div class="line">-(<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];</div><div class="line">    cell.textLabel.text = @(indexPath.row).description;</div><div class="line">    <span class="keyword">return</span> cell;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h4><ul>
+<li>新建<code>HMAppInfo</code>模型 继承自<code>NSObject</code> 并声明好相关属性</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@interface</span> <span class="attribute">HMAppInfo </span>: NSObject</div><div class="line"></div><div class="line"><span class="variable">@property</span> (nonatomic, copy) NSString *name;</div><div class="line"><span class="variable">@property</span> (nonatomic, copy) NSString *download;</div><div class="line"><span class="variable">@property</span> (nonatomic, copy) NSString *icon;</div><div class="line"></div><div class="line"><span class="variable">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在viewController中导入模型 并设置模型数组</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"HMAppInfo.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> &lt;HMAppInfo *&gt; *app_infos;</div></pre></td></tr></table></figure>
+<ul>
+<li>修改<code>loadData</code>方法 在其中将下载好的字典转为模型</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)loadData &#123;</div><div class="line">    </div><div class="line">    <span class="built_in">NSString</span> *urlString = <span class="string">@"https://raw.githubusercontent.com/massacreformash/DemoRepository/master/apps.json"</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//初始化一个网络请求的管理器</span></div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    [manager GET:urlString parameters:<span class="literal">nil</span> progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</div><div class="line">        <span class="comment">//字典转模型</span></div><div class="line">        <span class="built_in">NSArray</span> *array = responseObject;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSDictionary</span> *dict <span class="keyword">in</span> array) &#123;</div><div class="line">            HMAppInfo *info = [[HMAppInfo alloc] init];</div><div class="line">            [info setValuesForKeysWithDictionary:dict];</div><div class="line">            [<span class="keyword">self</span>.app_infos addObject:info];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//刷新tableView</span></div><div class="line">        [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">    &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</div><div class="line">        <span class="comment">//在公司开发的话 错误请求一定要处理</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"fail: %@"</span>, error);</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>修改数据源方法, 绑定cell数据</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma mark - 数据源方法</span></div><div class="line"></div><div class="line">-(<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.app_infos.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@"cell"</span> forIndexPath:indexPath];</div><div class="line">    </div><div class="line">    HMAppInfo *info = <span class="keyword">self</span>.app_infos[indexPath.row];</div><div class="line">    cell.textLabel.text = info.name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -397,9 +480,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
-          
             <a href="/tags/第三方框架/" rel="tag">#第三方框架</a>
+          
+            <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
           
         </div>
       
@@ -570,7 +653,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步图像-搭建界面"><span class="nav-number">1.</span> <span class="nav-text">异步图像-搭建界面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步图像-搭建界面"><span class="nav-number">1.</span> <span class="nav-text">异步图像-搭建界面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.2.</span> <span class="nav-text">操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定表格数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定表格数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义模型"><span class="nav-number">1.2.3.</span> <span class="nav-text">定义模型</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
