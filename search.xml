@@ -7,7 +7,7 @@
       <title><![CDATA[模拟SDWebImage异步下载图片操作]]></title>
       <url>http://yoursite.com/2016/07/30/%E6%A8%A1%E6%8B%9FSDWebImage%E5%BC%82%E6%AD%A5%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p><img src="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg" alt="思维导图"></p>
-<p><img src="http://d.pr/i/179bb" alt="图2"></p>
+<p><img src="http://d.pr/i/179bb+" alt="图2"></p>
 <h2 id="异步图像-搭建界面"><a href="#异步图像-搭建界面" class="headerlink" title="异步图像-搭建界面"></a>异步图像-搭建界面</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>搭建界面</li>
 <li>复习loadView</li>
