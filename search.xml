@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[模拟SDWebImage异步下载图片操作]]></title>
+      <title><![CDATA[模拟SDWebImage异步下载图片操作(一)]]></title>
       <url>http://yoursite.com/2016/07/30/%E6%A8%A1%E6%8B%9FSDWebImage%E5%BC%82%E6%AD%A5%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p><img src="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg" alt="思维导图"></p>
 <h2 id="异步下载图片操作-搭建界面"><a href="#异步下载图片操作-搭建界面" class="headerlink" title="异步下载图片操作-搭建界面"></a>异步下载图片操作-搭建界面</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
@@ -99,6 +99,25 @@
 <li>设置自动布局</li>
 </ul>
 <p><img src="http://d.pr/i/18u4U+" alt="Cell界面搭建"></p>
+<ul>
+<li>代码连线到头文件中</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@interface</span> <span class="attribute">HMAppCell </span>: UITableViewCell</div><div class="line"></div><div class="line"><span class="variable">@property</span> (weak, nonatomic) IBOutlet UIImageView *iconView;</div><div class="line"><span class="variable">@property</span> (weak, nonatomic) IBOutlet UILabel *appName;</div><div class="line"><span class="variable">@property</span> (weak, nonatomic) IBOutlet UILabel *downCount;</div><div class="line"></div><div class="line"><span class="variable">@end</span></div></pre></td></tr></table></figure>
+<h4 id="修改控制器的代码"><a href="#修改控制器的代码" class="headerlink" title="修改控制器的代码"></a>修改控制器的代码</h4><ul>
+<li>导入头文件</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"HMAppCell.h"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>修改可重用cell为自定义cell</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HMAppCell *cell = [tableView <span class="string">dequeueReusableCellWithIdentifier:</span>cellID <span class="string">forIndexPath:</span>indexPath];</div></pre></td></tr></table></figure>
+<ul>
+<li>修改数据源方法</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;</div><div class="line">    </div><div class="line">    HMAppCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath]<span class="comment">;</span></div><div class="line">    </div><div class="line">    HMAppInfo *info = self.app_infos[indexPath.row]<span class="comment">;</span></div><div class="line">    </div><div class="line">    cell.appName<span class="meta">.text</span> = info.name<span class="comment">;</span></div><div class="line">    cell.downCount<span class="meta">.text</span> = info.download<span class="comment">;</span></div><div class="line">    [cell.iconView sd_setImageWithURL:[NSURL URLWithString:info.icon]]<span class="comment">;</span></div><div class="line">    </div><div class="line">    return cell<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试<br><img src="http://d.pr/i/1hGr7+" alt="测试"></p>
+</blockquote>
 ]]></content>
     </entry>
     
