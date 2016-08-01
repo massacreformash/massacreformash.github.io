@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="第三方框架,项目笔记," />
 
 
 
@@ -84,15 +84,109 @@
 
 
 
-<meta name="description" content="此身愿荷维摩病 永作婆娑无尽灯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MFMAL's Blog">
-<meta property="og:url" content="http://yoursite.com/tags/UI/index.html">
+<meta name="description" content="异步图像-自行加载目标
+自行加载异步图像
+设置
+
+操作步骤异步下载的简单实现
+定义操作队列
+
+12
+
+在viewDidLoad创建操作队列
+
+12
+
+修改数据源方法
+
+
+运行测试
+
+模拟延时
+模拟网络延时
+
+12
+
+运行测试, 快速滚动表格
+
+会发现表格行的cell因为复用, 出现图片闪动的问题
+表格的复用问题：没有在数据源方法中更新显示
+解决办法：使用占位图像
+
+
+
+在数据源方法中设置占位图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟SDWebImage异步下载图片操作(二)">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/模拟SDWebImage异步下载图片操作(二)/index.html">
 <meta property="og:site_name" content="MFMAL's Blog">
-<meta property="og:description" content="此身愿荷维摩病 永作婆娑无尽灯">
+<meta property="og:description" content="异步图像-自行加载目标
+自行加载异步图像
+设置
+
+操作步骤异步下载的简单实现
+定义操作队列
+
+12
+
+在viewDidLoad创建操作队列
+
+12
+
+修改数据源方法
+
+
+运行测试
+
+模拟延时
+模拟网络延时
+
+12
+
+运行测试, 快速滚动表格
+
+会发现表格行的cell因为复用, 出现图片闪动的问题
+表格的复用问题：没有在数据源方法中更新显示
+解决办法：使用占位图像
+
+
+
+在数据源方法中设置占位图像">
+<meta property="og:updated_time" content="2016-08-01T12:34:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MFMAL's Blog">
-<meta name="twitter:description" content="此身愿荷维摩病 永作婆娑无尽灯">
+<meta name="twitter:title" content="模拟SDWebImage异步下载图片操作(二)">
+<meta name="twitter:description" content="异步图像-自行加载目标
+自行加载异步图像
+设置
+
+操作步骤异步下载的简单实现
+定义操作队列
+
+12
+
+在viewDidLoad创建操作队列
+
+12
+
+修改数据源方法
+
+
+运行测试
+
+模拟延时
+模拟网络延时
+
+12
+
+运行测试, 快速滚动表格
+
+会发现表格行的cell因为复用, 出现图片闪动的问题
+表格的复用问题：没有在数据源方法中更新显示
+解决办法：使用占位图像
+
+
+
+在数据源方法中设置占位图像">
 
 
 
@@ -113,9 +207,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/UI/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/01/模拟SDWebImage异步下载图片操作(二)/"/>
 
-  <title> 标签: UI | MFMAL's Blog </title>
+  <title> 模拟SDWebImage异步下载图片操作(二) | MFMAL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +230,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,46 +351,210 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        UI
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                模拟SDWebImage异步下载图片操作(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T20:26:48+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/01/模拟SDWebImage异步下载图片操作(二)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/01/模拟SDWebImage异步下载图片操作(二)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/01/模拟SDWebImage异步下载图片操作(二)/" class="leancloud_visitors" data-flag-title="模拟SDWebImage异步下载图片操作(二)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="异步图像-自行加载"><a href="#异步图像-自行加载" class="headerlink" title="异步图像-自行加载"></a>异步图像-自行加载</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>自行加载异步图像</li>
+<li>设置</li>
+</ul>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><h4 id="异步下载的简单实现"><a href="#异步下载的简单实现" class="headerlink" title="异步下载的简单实现"></a>异步下载的简单实现</h4><ul>
+<li>定义操作队列</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<ul>
+<li>在<code>viewDidLoad</code>创建操作队列</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<ul>
+<li>修改数据源方法</li>
+</ul>
+<blockquote>
+<p>运行测试</p>
+</blockquote>
+<h4 id="模拟延时"><a href="#模拟延时" class="headerlink" title="模拟延时"></a>模拟延时</h4><ul>
+<li>模拟网络延时</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试, 快速滚动表格</p>
+<ul>
+<li>会发现表格行的cell因为复用, 出现图片闪动的问题</li>
+<li>表格的复用问题：没有在数据源方法中更新显示</li>
+<li>解决办法：使用占位图像</li>
+</ul>
+</blockquote>
+<ul>
+<li>在数据源方法中设置占位图像</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试</p>
+<ul>
+<li>每次图像都从网络下载，浪费流量</li>
+<li>每次都显示占位图像，造成不好的用户体验</li>
+<li>合理的解决方案：图像没有下载显示占位图像，如果下载完成，直接显示图像</li>
+<li>解决办法一：在模型中缓存图像<ul>
+<li>优点：简单</li>
+<li>缺点：内存不足时不好释放资源</li>
+</ul>
+</li>
+<li>解决办法二：新建图像缓存字典<ul>
+<li>优点：能够单独管理图像的内存缓存</li>
+<li>缺点：代码要稍微繁琐一些</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/07/08/进阶12/" itemprop="url">
-              
-                <span itemprop="name">进阶第12天</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-08T07:53:00+08:00"
-              content="2016-07-08" >
-          07-08
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/第三方框架/" rel="tag">#第三方框架</a>
+          
+            <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/30/模拟SDWebImage异步下载图片操作(一)/" rel="next" title="模拟SDWebImage异步下载图片操作(一)">
+                <i class="fa fa-chevron-left"></i> 模拟SDWebImage异步下载图片操作(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -304,6 +562,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/01/模拟SDWebImage异步下载图片操作(二)/"
+           data-title="模拟SDWebImage异步下载图片操作(二)" data-url="http://yoursite.com/2016/08/01/模拟SDWebImage异步下载图片操作(二)/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -323,8 +589,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -335,7 +610,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -352,7 +627,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -412,6 +687,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步图像-自行加载"><span class="nav-number">1.</span> <span class="nav-text">异步图像-自行加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.2.</span> <span class="nav-text">操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异步下载的简单实现"><span class="nav-number">1.2.1.</span> <span class="nav-text">异步下载的简单实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟延时"><span class="nav-number">1.2.2.</span> <span class="nav-text">模拟延时</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -515,6 +801,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
