@@ -84,59 +84,61 @@
 
 
 
-<meta name="description" content="异步图像-搭建界面目标
+<meta name="description" content="异步下载图片操作-搭建界面目标
 搭建界面
-复习loadView
 体会AFNetWoring的使用
 复习tableView的简单实用
 
 操作步骤准备工作
 新建项目
-定义属性
+将Main.StoryBoard中初始的ViewController删除, 并在其中拖入一个包装着NavigationController的TableviewController
+运行测试
 
-123@interface ViewController ()@property (nonatomic, strong) UITableView *tableView;@end
 
-重写loadView  
 
-1234- (void)">
+加载网络数据
+添加AFNetWorking网络框架
+导入头文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟SDWebImage异步下载图片操作">
 <meta property="og:url" content="http://yoursite.com/2016/07/30/模拟SDWebImage异步下载图片操作/index.html">
 <meta property="og:site_name" content="MFMAL's Blog">
-<meta property="og:description" content="异步图像-搭建界面目标
+<meta property="og:description" content="异步下载图片操作-搭建界面目标
 搭建界面
-复习loadView
 体会AFNetWoring的使用
 复习tableView的简单实用
 
 操作步骤准备工作
 新建项目
-定义属性
+将Main.StoryBoard中初始的ViewController删除, 并在其中拖入一个包装着NavigationController的TableviewController
+运行测试
 
-123@interface ViewController ()@property (nonatomic, strong) UITableView *tableView;@end
 
-重写loadView  
 
-1234- (void)">
+加载网络数据
+添加AFNetWorking网络框架
+导入头文件">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg">
-<meta property="og:updated_time" content="2016-07-31T15:57:50.000Z">
+<meta property="og:image" content="http://d.pr/i/15K3N+">
+<meta property="og:image" content="http://d.pr/i/1dUJF+">
+<meta property="og:updated_time" content="2016-08-01T01:34:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模拟SDWebImage异步下载图片操作">
-<meta name="twitter:description" content="异步图像-搭建界面目标
+<meta name="twitter:description" content="异步下载图片操作-搭建界面目标
 搭建界面
-复习loadView
 体会AFNetWoring的使用
 复习tableView的简单实用
 
 操作步骤准备工作
 新建项目
-定义属性
+将Main.StoryBoard中初始的ViewController删除, 并在其中拖入一个包装着NavigationController的TableviewController
+运行测试
 
-123@interface ViewController ()@property (nonatomic, strong) UITableView *tableView;@end
 
-重写loadView  
 
-1234- (void)">
+加载网络数据
+添加AFNetWorking网络框架
+导入头文件">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg">
 
 
@@ -399,24 +401,18 @@
 
       
         <p><img src="http://ww4.sinaimg.cn/large/6b1763dbjw1f6c5lbhtm5j21kw2aytxa.jpg" alt="思维导图"></p>
-<h2 id="异步图像-搭建界面"><a href="#异步图像-搭建界面" class="headerlink" title="异步图像-搭建界面"></a>异步图像-搭建界面</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<h2 id="异步下载图片操作-搭建界面"><a href="#异步下载图片操作-搭建界面" class="headerlink" title="异步下载图片操作-搭建界面"></a>异步下载图片操作-搭建界面</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>搭建界面</li>
-<li>复习loadView</li>
 <li>体会<code>AFNetWoring</code>的使用</li>
 <li>复习tableView的简单实用</li>
 </ul>
 <h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ul>
 <li>新建项目</li>
-<li>定义属性</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@interface</span> ViewController ()</div><div class="line"><span class="variable">@property</span> (nonatomic, strong) UITableView *tableView;</div><div class="line"><span class="variable">@end</span></div></pre></td></tr></table></figure>
-<ul>
-<li>重写<code>loadView</code>  </li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)loadView &#123;</div><div class="line">    _tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectZero</span> style:<span class="built_in">UITableViewStylePlain</span>];</div><div class="line">    <span class="keyword">self</span>.view = _tableView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
+<li>将<code>Main.StoryBoard</code>中初始的<code>ViewController</code>删除, 并在其中拖入一个包装着<code>NavigationController</code>的<code>TableviewController</code><blockquote>
 <p>运行测试</p>
 </blockquote>
+</li>
+</ul>
 <h4 id="加载网络数据"><a href="#加载网络数据" class="headerlink" title="加载网络数据"></a>加载网络数据</h4><ul>
 <li>添加<code>AFNetWorking</code>网络框架</li>
 <li>导入头文件</li>
@@ -432,9 +428,6 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *cellId = <span class="string">@"cell"</span>;</div></pre></td></tr></table></figure>
 <ul>
 <li>设置数据源并注册原型cell</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)loadView &#123;</div><div class="line">    _tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectZero</span> style:<span class="built_in">UITableViewStylePlain</span>];</div><div class="line"></div><div class="line">    _tableView.dataSource = <span class="keyword">self</span>;</div><div class="line">    [_tableView registerClass:[<span class="built_in">UITableViewCell</span> <span class="keyword">class</span>] forCellReuseIdentifier:cellId];</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.view = _tableView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
 <li>遵守协议</li>
 </ul>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@interface</span> ViewController () <span class="variable">&lt;UITableViewDataSource&gt;</span></div></pre></td></tr></table></figure>
@@ -458,6 +451,32 @@
 <li>修改数据源方法, 绑定cell数据</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma mark - 数据源方法</span></div><div class="line"></div><div class="line">-(<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.app_infos.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@"cell"</span> forIndexPath:indexPath];</div><div class="line">    </div><div class="line">    HMAppInfo *info = <span class="keyword">self</span>.app_infos[indexPath.row];</div><div class="line">    cell.textLabel.text = info.name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="异步下载图片操作-设置图像"><a href="#异步下载图片操作-设置图像" class="headerlink" title="异步下载图片操作-设置图像"></a>异步下载图片操作-设置图像</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>使用<code>SDWebImage</code>异步加载网络图像</li>
+<li>使用XIB自定义Cell</li>
+</ul>
+<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><h4 id="使用SDWebImage加载图像"><a href="#使用SDWebImage加载图像" class="headerlink" title="使用SDWebImage加载图像"></a>使用<code>SDWebImage</code>加载图像</h4><ul>
+<li>导入<code>SDWebImage</code>框架</li>
+<li>导入头文件</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"UIImageView+WebCache.h"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>修改数据源方法</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (UITableViewCell *)<span class="string">tableView:</span>(UITableView *)tableView <span class="string">cellForRowAtIndexPath:</span>(NSIndexPath *)indexPath &#123;</div><div class="line"></div><div class="line">    UITableViewCell *cell = [tableView <span class="string">dequeueReusableCellWithIdentifier:</span>cellId <span class="string">forIndexPath:</span>indexPath];</div><div class="line"></div><div class="line">    HMAppInfo *info = self.app_infos[indexPath.row];</div><div class="line">    cell.textLabel.text = info.name;</div><div class="line"></div><div class="line">    <span class="comment">//SDWebImage</span></div><div class="line">    [cell.imageView <span class="string">sd_setImageWithURL:</span>[NSURL <span class="string">URLWithString:</span>info.icon]];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在info.plist增加ATS设置<br><img src="http://d.pr/i/15K3N+" alt="设置ATS"><br>运行测试</p>
+<ul>
+<li>图像需要点击之后才能显示</li>
+<li>因为图像加载是异步的, 第一次设置数据源方法时, 图像还没有下载完成, 那个系统默认的<code>tableViewCell</code>也不会创建图像视图<br>解决办法: 用自定义的Cell</li>
+</ul>
+</blockquote>
+<h4 id="自定义Cell"><a href="#自定义Cell" class="headerlink" title="自定义Cell"></a>自定义Cell</h4><ul>
+<li>新建自定义的<code>HMAppCell</code>继承自<code>UITableviewCell</code>, 同时将Tableview的Cell绑定到<code>HMAppCell</code>类</li>
+<li>设置自动布局</li>
+</ul>
+<p><img src="http://d.pr/i/1dUJF+" alt="Cell界面搭建"></p>
+
       
     </div>
 
@@ -652,7 +671,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步图像-搭建界面"><span class="nav-number">1.</span> <span class="nav-text">异步图像-搭建界面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.2.</span> <span class="nav-text">操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载网络数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">加载网络数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定表格数据"><span class="nav-number">1.2.3.</span> <span class="nav-text">绑定表格数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义模型"><span class="nav-number">1.2.4.</span> <span class="nav-text">定义模型</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步下载图片操作-搭建界面"><span class="nav-number">1.</span> <span class="nav-text">异步下载图片操作-搭建界面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.2.</span> <span class="nav-text">操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载网络数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">加载网络数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定表格数据"><span class="nav-number">1.2.3.</span> <span class="nav-text">绑定表格数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义模型"><span class="nav-number">1.2.4.</span> <span class="nav-text">定义模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步下载图片操作-设置图像"><span class="nav-number">2.</span> <span class="nav-text">异步下载图片操作-设置图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标-1"><span class="nav-number">2.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤-1"><span class="nav-number">2.2.</span> <span class="nav-text">操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用SDWebImage加载图像"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用SDWebImage加载图像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义Cell"><span class="nav-number">2.2.2.</span> <span class="nav-text">自定义Cell</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
