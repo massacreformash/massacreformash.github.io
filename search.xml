@@ -10,11 +10,12 @@
 <h2 id="异步下载图片操作-搭建界面"><a href="#异步下载图片操作-搭建界面" class="headerlink" title="异步下载图片操作-搭建界面"></a>异步下载图片操作-搭建界面</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>搭建界面</li>
 <li>体会<code>AFNetWoring</code>的使用</li>
-<li>复习tableView的简单实用</li>
+<li>复习<code>tableView</code>的简单实用</li>
 </ul>
 <h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ul>
 <li>新建项目</li>
-<li>将<code>Main.StoryBoard</code>中初始的<code>ViewController</code>删除, 并在其中拖入一个包装着<code>NavigationController</code>的<code>TableviewController</code><blockquote>
+<li>将<code>Main.storyboard</code>中初始的<code>ViewController</code>删除, 并在其中拖入一个包装着<code>NavigationController</code>的<code>TableviewController</code></li>
+<li>将<code>storyboard</code>中的<code>TableView</code> 绑定为系统的<code>viewController</code>类 并将系统自带的<code>viewController</code>继承自<code>UITableViewController</code>类<blockquote>
 <p>运行测试<br><img src="http://d.pr/i/1dUJF+" alt="Cell界面搭建"></p>
 </blockquote>
 </li>
@@ -27,11 +28,14 @@
 <ul>
 <li>实现loadData方法</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)loadData &#123;</div><div class="line">    <span class="built_in">NSString</span> *urlString = <span class="string">@"https://raw.githubusercontent.com/massacreformash/DemoRepository/master/apps.json"</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//初始化一个网络请求的管理器</span></div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    [manager GET:urlString parameters:<span class="literal">nil</span> progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"success: %@"</span>, responseObject);</div><div class="line">    &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</div><div class="line">        <span class="comment">//在公司开发的话 错误请求一定要处理</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"fail: %@"</span>, error);</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)loadData &#123;</div><div class="line">    <span class="built_in">NSString</span> *urlString = <span class="string">@"https://raw.githubusercontent.com/massacreformash/DemoRepository/master/apps.json"</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//初始化一个网络请求的管理器</span></div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    </div><div class="line">    [manager GET:urlString parameters:<span class="literal">nil</span> progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"success: %@"</span>, responseObject);</div><div class="line">    &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</div><div class="line">        <span class="comment">//在公司开发的话 错误请求一定要处理</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"fail: %@"</span>, error);</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试 此时在控制台应该能够看到类似于这样的输出:<br><img src="http://d.pr/i/1e5R7+" alt="输出"></p>
+</blockquote>
 <h4 id="绑定表格数据"><a href="#绑定表格数据" class="headerlink" title="绑定表格数据"></a>绑定表格数据</h4><ul>
 <li>定义tableView可重用标识符</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *cellId = <span class="string">@"cell"</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *cellId = <span class="string">@"cellid"</span>;</div></pre></td></tr></table></figure>
 <ul>
 <li>设置数据源并注册原型cell</li>
 <li>遵守协议</li>
@@ -41,6 +45,9 @@
 <li>实现协议方法</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma mark - 数据源方法</span></div><div class="line"></div><div class="line">-(<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];</div><div class="line">    cell.textLabel.text = @(indexPath.row).description;</div><div class="line">    <span class="keyword">return</span> cell;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><img src="http://d.pr/i/D2IP+" alt="测试"></p>
+</blockquote>
 <h4 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h4><ul>
 <li>新建<code>HMAppInfo</code>模型 继承自<code>NSObject</code> 并声明好相关属性</li>
 </ul>
@@ -59,7 +66,7 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma mark - 数据源方法</span></div><div class="line"></div><div class="line">-(<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.app_infos.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@"cell"</span> forIndexPath:indexPath];</div><div class="line">    </div><div class="line">    HMAppInfo *info = <span class="keyword">self</span>.app_infos[indexPath.row];</div><div class="line">    cell.textLabel.text = info.name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="异步下载图片操作-设置图像"><a href="#异步下载图片操作-设置图像" class="headerlink" title="异步下载图片操作-设置图像"></a>异步下载图片操作-设置图像</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>使用<code>SDWebImage</code>异步加载网络图像</li>
-<li>使用XIB自定义Cell</li>
+<li>在storyboard中自定义Cell</li>
 </ul>
 <h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><h4 id="使用SDWebImage加载图像"><a href="#使用SDWebImage加载图像" class="headerlink" title="使用SDWebImage加载图像"></a>使用<code>SDWebImage</code>加载图像</h4><ul>
 <li>导入<code>SDWebImage</code>框架</li>
