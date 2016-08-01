@@ -90,8 +90,8 @@
 <blockquote>
 <p>在info.plist增加ATS设置<br><img src="http://d.pr/i/15K3N+" alt="设置ATS"><br>运行测试</p>
 <ul>
-<li>图像需要点击之后才能显示</li>
-<li>因为图像加载是异步的, 第一次设置数据源方法时, 图像还没有下载完成, 那个系统默认的<code>tableViewCell</code>也不会创建图像视图<br>解决办法: 用自定义的Cell</li>
+<li>图像需要点击之后才能显示<br><img src="http://d.pr/i/XTsf+" alt="测试"></li>
+<li>因为图像加载是异步的, 第一次设置数据源方法时, 图像还没有下载完成, 那么系统默认的<code>tableViewCell</code>也不会创建图像视图<br>解决办法: 用自定义的Cell</li>
 </ul>
 </blockquote>
 <h4 id="自定义Cell"><a href="#自定义Cell" class="headerlink" title="自定义Cell"></a>自定义Cell</h4><ul>
