@@ -367,26 +367,11 @@
 操作步骤异步下载的简单实现
 定义操作队列
 
-12
+1@property (nonatomic, strong) NSOperationQueue *queque;
 
-在viewDidLoad创建操作队列
+懒加载操作队列
 
-12
-
-修改数据源方法
-
-
-运行测试
-
-模拟延时
-模拟网络延时
-
-12
-
-运行测试, 快速滚动表格
-
-会发现表格行的cell因为复用, 出现图片闪动的问题
-表
+1234567-(NSOperationQueue *)queque&#
           ...
 
           <div class="post-more-link text-center">
