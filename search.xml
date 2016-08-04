@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类]]></title>
-      <url>http://yoursite.com/2016/08/03/%E6%A8%A1%E6%8B%9FSDWebImage%E5%BC%82%E6%AD%A5%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C(%E4%BA%94)%20%E6%8A%BD%E5%8F%96SDWebImage%E5%88%86%E7%B1%BB/</url>
+      <url>http://yoursite.com/2016/08/04/%E6%A8%A1%E6%8B%9FSDWebImage%E5%BC%82%E6%AD%A5%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C(%E4%BA%94)%20%E6%8A%BD%E5%8F%96SDWebImage%E5%88%86%E7%B1%BB/</url>
       <content type="html"><![CDATA[<h2 id="a-UIImageView的分类方法"><a href="#a-UIImageView的分类方法" class="headerlink" title="a.UIImageView的分类方法"></a>a.UIImageView的分类方法</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>通过<code>分类</code>方法简化Web图像加载</li>
 <li>使用<code>runtime</code>中<code>关联对象</code>, 对分类中的属性进行关联</li>
