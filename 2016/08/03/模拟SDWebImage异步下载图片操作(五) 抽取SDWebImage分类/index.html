@@ -1,0 +1,1062 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="第三方框架,项目笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="a.UIImageView的分类方法目标
+通过分类方法简化Web图像加载
+使用runtime中关联对象, 对分类中的属性进行关联
+
+操作步骤
+新建UIImageView的分类UIImageView+HMWebCache
+定义分类的对象方法
+
+12345@interface UIImageView (HMWebCache)-(void)hm_setImageWithURLString:(NSStri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类">
+<meta property="og:url" content="http://yoursite.com/2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/index.html">
+<meta property="og:site_name" content="MFMAL's Blog">
+<meta property="og:description" content="a.UIImageView的分类方法目标
+通过分类方法简化Web图像加载
+使用runtime中关联对象, 对分类中的属性进行关联
+
+操作步骤
+新建UIImageView的分类UIImageView+HMWebCache
+定义分类的对象方法
+
+12345@interface UIImageView (HMWebCache)-(void)hm_setImageWithURLString:(NSStri">
+<meta property="og:image" content="http://d.pr/i/1gBG2+">
+<meta property="og:image" content="http://d.pr/i/1jpDm+">
+<meta property="og:updated_time" content="2016-08-04T11:48:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类">
+<meta name="twitter:description" content="a.UIImageView的分类方法目标
+通过分类方法简化Web图像加载
+使用runtime中关联对象, 对分类中的属性进行关联
+
+操作步骤
+新建UIImageView的分类UIImageView+HMWebCache
+定义分类的对象方法
+
+12345@interface UIImageView (HMWebCache)-(void)hm_setImageWithURLString:(NSStri">
+<meta name="twitter:image" content="http://d.pr/i/1gBG2+">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/"/>
+
+  <title> 模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类 | MFMAL's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">MFMAL's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T16:31:53+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/" class="leancloud_visitors" data-flag-title="模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="a-UIImageView的分类方法"><a href="#a-UIImageView的分类方法" class="headerlink" title="a.UIImageView的分类方法"></a>a.UIImageView的分类方法</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>通过<code>分类</code>方法简化Web图像加载</li>
+<li>使用<code>runtime</code>中<code>关联对象</code>, 对分类中的属性进行关联</li>
+</ul>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
+<li>新建<code>UIImageView</code>的分类<code>UIImageView+HMWebCache</code></li>
+<li>定义分类的对象方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">UIImageView</span> (<span class="title">HMWebCache</span>)</span></div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)hm_setImageWithURLString:(<span class="built_in">NSString</span> *)URLString placeHolder:(<span class="built_in">UIImage</span> *)placeHolder;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h4 id="分类方法的初步实现"><a href="#分类方法的初步实现" class="headerlink" title="分类方法的初步实现"></a>分类方法的初步实现</h4><ul>
+<li>导入下载管理器的头文件</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"HMDownloadOperationManager.h"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>实现分类方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)hm_setImageWithURLString:(<span class="built_in">NSString</span> *)URLString placeHolder:(<span class="built_in">UIImage</span> *)placeHolder&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.image = placeHolder;</div><div class="line">    </div><div class="line">    [[HMDownloadOperationManager sharedManager] downloadImageWithURLString:URLString completion:^(<span class="built_in">UIImage</span> *image) &#123;</div><div class="line">        <span class="keyword">self</span>.image = image;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="修改viewController的代码"><a href="#修改viewController的代码" class="headerlink" title="修改viewController的代码"></a>修改<code>viewController</code>的代码</h4><ul>
+<li>导入分类的头文件</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"UIImageView+HMWebCache.h"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>修改数据源方法</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(UITableViewCell *)<span class="string">tableView:</span>(UITableView *)tableView <span class="string">cellForRowAtIndexPath:</span>(NSIndexPath *)indexPath&#123;</div><div class="line">    </div><div class="line">    HMAppCell *cell = [tableView <span class="string">dequeueReusableCellWithIdentifier:</span>cellID <span class="string">forIndexPath:</span>indexPath];</div><div class="line">    </div><div class="line">    HMAppInfo *info = self.app_infos[indexPath.row];</div><div class="line">    </div><div class="line">    cell.appName.text = info.name;</div><div class="line">    cell.downCount.text = info.download;</div><div class="line">    <span class="comment">//在这里设置占位图像 用来解决图像闪动的问题</span></div><div class="line">    cell.iconView.image = [UIImage <span class="string">imageNamed:</span>@<span class="string">"user_default"</span>];</div><div class="line">    </div><div class="line">    [cell.iconView <span class="string">hm_setImageWithURLString:</span>info.icon <span class="string">placeHolder:</span>[UIImage <span class="string">imageNamed:</span>@<span class="string">"user_default"</span>]];</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试<br><img src="http://d.pr/i/1gBG2+" alt="测试"></p>
+<ul>
+<li>发现快速滚动的时候, cell一旦复用, 会重复创建下载操作, 导致图片错乱</li>
+<li>解决方案: 记录此前的<code>URLString</code>, 如果当前cell的<code>URLString</code>发生变化, 则取消之前的下载操作</li>
+</ul>
+</blockquote>
+<h4 id="运行时关联对象的使用"><a href="#运行时关联对象的使用" class="headerlink" title="运行时关联对象的使用"></a>运行时关联对象的使用</h4><ul>
+<li>在分类中定义<code>URLString</code>属性</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *URLString;</div></pre></td></tr></table></figure>
+<ul>
+<li>导入头文件</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>此时会得到以下两个警告, 提示我们属性<code>URLString</code>需要进行动态的绑定</p>
+<ul>
+<li>Property ‘URLString’ requires method ‘URLString’ to be defined - use @dynamic or provide a method implementation in this category</li>
+<li>Property ‘URLString’ requires method ‘setURLString:’ to be defined - use @dynamic or provide a method implementation in this category</li>
+<li>定义关联对象属性的<code>key</code></li>
+</ul>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">char</span> *URLStringKey = <span class="string">"kURLStringKey"</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>实现属性的<code>getter</code>和<code>setter</code>方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">NSString</span> *)URLString&#123;</div><div class="line">    <span class="keyword">return</span> objc_getAssociatedObject(<span class="keyword">self</span>, URLStringKey);</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)setURLString:(<span class="built_in">NSString</span> *)URLString&#123;</div><div class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, URLStringKey, URLString, OBJC_ASSOCIATION_COPY_NONATOMIC);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>修改分类中设置图像的方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)hm_setImageWithURLString:(<span class="built_in">NSString</span> *)URLString placeHolder:(<span class="built_in">UIImage</span> *)placeHolder&#123;</div><div class="line">    <span class="comment">//当准备下载的图像的url与此前该cell中准备下载的图像url不等, 且该cell中至少有一个图像正在下载时</span></div><div class="line">    <span class="comment">//取消之前的下载操作(取消操作将在后面实现)</span></div><div class="line">    <span class="keyword">if</span> (![URLString isEqualToString:<span class="keyword">self</span>.URLString] &amp;&amp; <span class="keyword">self</span>.URLString != <span class="literal">nil</span>) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"取消之前的下载操作"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//使用新的url下载图像, 并记录当前的url</span></div><div class="line">    <span class="keyword">self</span>.URLString = URLString;</div><div class="line">    </div><div class="line">    <span class="comment">//设置占位图像</span></div><div class="line">    <span class="keyword">self</span>.image = placeHolder;</div><div class="line">    </div><div class="line">    [[HMDownloadOperationManager sharedManager] downloadImageWithURLString:URLString completion:^(<span class="built_in">UIImage</span> *image) &#123;</div><div class="line">        <span class="comment">//下载完成后回调时, 将当前下载操作的url置空</span></div><div class="line">        <span class="comment">//(清除关联属性)</span></div><div class="line">        <span class="keyword">self</span>.URLString = <span class="literal">nil</span>;</div><div class="line">        <span class="comment">//设置下载好的图片</span></div><div class="line">        <span class="keyword">self</span>.image = image;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>下一目标: 取消指定<code>URLString</code>的下载操作</p>
+</blockquote>
+<h2 id="b-取消指定-URLString-的下载操作"><a href="#b-取消指定-URLString-的下载操作" class="headerlink" title="b.取消指定 URLString 的下载操作"></a>b.取消指定 URLString 的下载操作</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>取消指定URLString的下载操作, 以解决图像复用的问题</li>
+</ul>
+<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
+<li>在<code>HMDownloadOperationManager.h</code>中增加方法定义</li>
+</ul>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-<span class="params">(void)</span>cancelDownloadOperationWithURLString:<span class="params">(NSString *)</span>URLString;</div></pre></td></tr></table></figure>
+<ul>
+<li>实现该方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)cancelDownloadOperationWithURLString:(<span class="built_in">NSString</span> *)URLString&#123;</div><div class="line">    <span class="comment">//从缓存中取到下载操作</span></div><div class="line">    HMDownloadOperation *operation = [<span class="keyword">self</span>.operationCacheDict objectForKey:URLString];</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"向之前的下载操作发送取消下载的消息:%@, %@"</span>, URLString, operation);</div><div class="line">    <span class="comment">//发送取消操作的消息</span></div><div class="line">    <span class="keyword">if</span> (operation != <span class="literal">nil</span>) &#123;</div><div class="line">        [operation cancel];</div><div class="line">        <span class="comment">//将操作从缓存中移除</span></div><div class="line">        [<span class="keyword">self</span>.operationCacheDict removeObjectForKey:URLString];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在<code>UIImageView</code>的分类方法中调用方法, 取消之前已有的下载操作</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//当准备下载的图像的url与此前该cell中准备下载的图像url不等, 且该cell中至少有一个图像正在下载时</span></div><div class="line"><span class="comment">//取消之前的下载操作(取消操作将在后面实现)</span></div><div class="line"><span class="keyword">if</span> (![URLString isEqualToString:<span class="keyword">self</span>.URLString] &amp;&amp; <span class="keyword">self</span>.URLString != <span class="literal">nil</span>) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"取消之前的下载操作"</span>);</div><div class="line">    <span class="comment">//进行取消操作</span></div><div class="line">    [[HMDownloadOperationManager sharedManager] cancelDownloadOperationWithURLString:<span class="keyword">self</span>.URLString];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试<br><img src="http://d.pr/i/1jpDm+" alt="测试"><br>可以看到已经比较好的解决了图像重复下载的问题, 当滑动时, 未下载图像的cell会先取消之前的下载操作, 重新下载当前图像</p>
+</blockquote>
+<h2 id="c-内存警告处理"><a href="#c-内存警告处理" class="headerlink" title="c.内存警告处理"></a>c.内存警告处理</h2><h3 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>学习<code>SDWebImage</code>的内存警告方法, 处理内存警告</li>
+</ul>
+<h3 id="操作步骤-2"><a href="#操作步骤-2" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
+<li>在<code>HMDownloadOperationManager</code>的<code>init</code>方法中注册内存警告通知</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">instancetype</span>)init</div><div class="line">&#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">        _downloadQueque = [[<span class="built_in">NSOperationQueue</span> alloc] init];</div><div class="line">        _imageCacheDict = [<span class="built_in">NSMutableDictionary</span> dictionary];</div><div class="line">        _operationCacheDict = [<span class="built_in">NSMutableDictionary</span> dictionary];</div><div class="line">        </div><div class="line">        <span class="comment">//注册内存警告通知</span></div><div class="line">        [[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(memoryWarning) name:<span class="built_in">UIApplicationDidReceiveMemoryWarningNotification</span> object:<span class="literal">nil</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//下载管理器销毁时, 注销通知中心</span></div><div class="line">-(<span class="keyword">void</span>)dealloc&#123;</div><div class="line">    [[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>实现内存警告方法</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)memoryWarning &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"memory warning received!"</span>);</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span>.imageCacheDict removeAllObjects];</div><div class="line">    [<span class="keyword">self</span>.operationCacheDict removeAllObjects];</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span>.downloadQueque cancelAllOperations];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/第三方框架/" rel="tag">#第三方框架</a>
+          
+            <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/03/模拟SDWebImage异步下载图片操作(四) 仿SDWebImage的操作/" rel="next" title="模拟SDWebImage异步下载图片操作(四) 仿SDWebImage的操作">
+                <i class="fa fa-chevron-left"></i> 模拟SDWebImage异步下载图片操作(四) 仿SDWebImage的操作
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/"
+           data-title="模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类" data-url="http://yoursite.com/2016/08/03/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="massacreformash" />
+          <p class="site-author-name" itemprop="name">massacreformash</p>
+          <p class="site-description motion-element" itemprop="description">此身愿荷维摩病 永作婆娑无尽灯</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/massacreformash" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/244607780" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/massacreformash" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/MassacreforMash" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-UIImageView的分类方法"><span class="nav-number">1.</span> <span class="nav-text">a.UIImageView的分类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.2.</span> <span class="nav-text">操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类方法的初步实现"><span class="nav-number">1.2.1.</span> <span class="nav-text">分类方法的初步实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改viewController的代码"><span class="nav-number">1.2.2.</span> <span class="nav-text">修改viewController的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时关联对象的使用"><span class="nav-number">1.2.3.</span> <span class="nav-text">运行时关联对象的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b-取消指定-URLString-的下载操作"><span class="nav-number">2.</span> <span class="nav-text">b.取消指定 URLString 的下载操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标-1"><span class="nav-number">2.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤-1"><span class="nav-number">2.2.</span> <span class="nav-text">操作步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-内存警告处理"><span class="nav-number">3.</span> <span class="nav-text">c.内存警告处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标-2"><span class="nav-number">3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作步骤-2"><span class="nav-number">3.2.</span> <span class="nav-text">操作步骤</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">massacreformash</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"massacreformash"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IAqd2P6FzyUNMjgSUrpz3FbO-gzGzoHsz", "tYVsMbhCkNQiCQXXlPJu1p8D");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
