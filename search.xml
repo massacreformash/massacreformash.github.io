@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类]]></title>
       <url>http://yoursite.com/2016/08/04/%E6%A8%A1%E6%8B%9FSDWebImage%E5%BC%82%E6%AD%A5%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C(%E4%BA%94)%20%E6%8A%BD%E5%8F%96SDWebImage%E5%88%86%E7%B1%BB/</url>
-      <content type="html"><![CDATA[<h2 id="a-UIImageView的分类方法"><a href="#a-UIImageView的分类方法" class="headerlink" title="a.UIImageView的分类方法"></a>a.UIImageView的分类方法</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+      <content type="html"><![CDATA[<h2 id="a-UIImageView的分类方法"><a href="#a-UIImageView的分类方法" class="headerlink" title="a. UIImageView的分类方法"></a>a. UIImageView的分类方法</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>通过<code>分类</code>方法简化Web图像加载</li>
 <li>使用<code>runtime</code>中<code>关联对象</code>, 对分类中的属性进行关联</li>
 </ul>
@@ -66,7 +66,7 @@
 <blockquote>
 <p>下一目标: 取消指定<code>URLString</code>的下载操作</p>
 </blockquote>
-<h2 id="b-取消指定-URLString-的下载操作"><a href="#b-取消指定-URLString-的下载操作" class="headerlink" title="b.取消指定 URLString 的下载操作"></a>b.取消指定 URLString 的下载操作</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><ul>
+<h2 id="b-取消指定-URLString-的下载操作"><a href="#b-取消指定-URLString-的下载操作" class="headerlink" title="b. 取消指定 URLString 的下载操作"></a>b. 取消指定 URLString 的下载操作</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>取消指定URLString的下载操作, 以解决图像复用的问题</li>
 </ul>
 <h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
@@ -84,7 +84,7 @@
 <blockquote>
 <p>运行测试<br><img src="http://d.pr/i/1jpDm+" alt="测试"><br>可以看到已经比较好的解决了图像重复下载的问题, 当滑动时, 未下载图像的cell会先取消之前的下载操作, 重新下载当前图像</p>
 </blockquote>
-<h2 id="c-内存警告处理"><a href="#c-内存警告处理" class="headerlink" title="c.内存警告处理"></a>c.内存警告处理</h2><h3 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h3><ul>
+<h2 id="c-内存警告处理"><a href="#c-内存警告处理" class="headerlink" title="c. 内存警告处理"></a>c. 内存警告处理</h2><h3 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h3><ul>
 <li>学习<code>SDWebImage</code>的内存警告方法, 处理内存警告</li>
 </ul>
 <h3 id="操作步骤-2"><a href="#操作步骤-2" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
