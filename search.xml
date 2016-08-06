@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[iOS多线程技术的几种实现方案(一) pthread]]></title>
-      <url>http://yoursite.com/2016/08/05/iOS%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E5%87%A0%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88(%E4%B8%80)%20pthread%20&%20NSThread/</url>
+      <url>http://yoursite.com/2016/08/05/iOS%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E5%87%A0%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88(%E4%B8%80)%20pthread/</url>
       <content type="html"><![CDATA[<h2 id="iOS中多线程的实现方案"><a href="#iOS中多线程的实现方案" class="headerlink" title="iOS中多线程的实现方案"></a>iOS中多线程的实现方案</h2><table>
 <thead>
 <tr>
