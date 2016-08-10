@@ -96,7 +96,7 @@
 自己在做项目的时候, 需要实现一个自定义弹窗的效果, 同时在上面实现很多子功能, 此时如果用自定义的View来做的话就显得有些力不从心了, 必须想到另一种方法实现
 更合适的实现方式应该就是使用presentViewController: animated: completion:方法弹出模态控制器来做, 但如果不进行自定义的话, 弹出的控制器永远都是和屏幕一样大, 因此需要进行自定义
 比较坑">
-<meta property="og:updated_time" content="2016-08-10T12:08:41.000Z">
+<meta property="og:updated_time" content="2016-08-10T15:35:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作">
 <meta name="twitter:description" content="前言
@@ -379,35 +379,52 @@
 <p>在本例中, 假设在程序启动后, 点击屏幕就会弹出<code>模态控制器</code>, 所以下面的逻辑代码均在<code>touchesBegan: withEvent:</code>中实现</p>
 </blockquote>
 <ul>
-<li>在准备弹出<code>模态控制器</code>的初始<code>viewController</code>中(实际上这个控制器应当被称为<code>presentingController</code>, 下同)初始化<code>模态控制器</code>(同样的, 在方法中, 这个要弹出来的<code>模态控制器</code>被称为<code>presentedController</code>, 下同)</li>
+<li>在准备弹出<code>模态控制器</code>的初始<code>viewController</code>中(实际上这个控制器应当被称为<code>presentingViewController</code>, 下同)初始化<code>模态控制器</code>(同样的, 在方法中, 这个要弹出来的<code>模态控制器</code>被称为<code>presentedViewController</code>, 下同)</li>
 </ul>
 <blockquote>
-<p>事先需要自定义一个新类作为要初始化的<code>presentedController</code>, 并继承自<code>UIViewController</code>, 本例中自定义了一个名为</p>
+<p>事先需要自定义一个新类作为要初始化的<code>presentedViewController</code>, 并继承自<code>UIViewController</code>, 本例中自定义了一个名为</p>
 <ul>
 <li><strong><code>MusicViewController</code></strong></li>
 </ul>
-<p>的类作为要弹出的<code>presentedController</code>的类</p>
+<p>的类作为要弹出的<code>presentedViewController</code>的类</p>
 </blockquote>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"MusicViewController.h"</span></div></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">  </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>设置<code>presentedController</code>的<code>modalPresentationStyle</code>属性为<code>UIModalPresentationCustom</code></li>
+<li><ol>
+<li>设置<code>presentedViewController</code>的<code>modalPresentationStyle</code>属性为<code>UIModalPresentationCustom</code></li>
+</ol>
+</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//2.</span></div><div class="line">    vc.modalPresentationStyle = <span class="built_in">UIModalPresentationCustom</span>;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>初始化<code>presentedController</code>的代理<blockquote>
-<p>这个代理是<strong>重中之重</strong>, 是实现自定义<code>presentedController</code>的最重要的组成部分, 下面的步骤中会重点分析</p>
+<li>初始化<code>presentedViewController</code>的代理<blockquote>
+<ul>
+<li>这个代理是<strong>重中之重</strong>, 是实现自定义<code>presentedViewController</code>的最重要的组成部分, 下面的步骤中会<strong>重点分析</strong></li>
+</ul>
+<p>暂时需要知道的是, 这个代理需要自定义一个遵守<code>&lt;UIViewControllerTransitioningDelegate&gt;</code>协议的类, 并且继承自<code>UIPresentationController</code>类. 本例中自定义了一个名为</p>
+<ul>
+<li><strong><code>MusicAnimator</code></strong></li>
+</ul>
+<p>的类作为要弹出的<code>presentedViewController</code>的代理</p>
 </blockquote>
 </li>
 </ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"MusicAnimator.h"</span></div></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@interface</span> ViewController ()</div><div class="line"><span class="variable">@property</span> (nonatomic, strong) MusicAnimator *animotor;</div><div class="line"><span class="variable">@end</span></div></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//2.</span></div><div class="line">    vc.modalPresentationStyle = <span class="built_in">UIModalPresentationCustom</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//3.</span></div><div class="line">    <span class="keyword">self</span>.animotor = [[MusicAnimator alloc] init];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>设置<code>presentedController</code>的代理为刚才初始化好的代理对象</li>
+<li>设置<code>presentedViewController</code>的代理为刚才初始化好的代理对象</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//2.</span></div><div class="line">    vc.modalPresentationStyle = <span class="built_in">UIModalPresentationCustom</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//3.</span></div><div class="line">    <span class="keyword">self</span>.animotor = [[MusicAnimator alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//4.</span></div><div class="line">    vc.transitioningDelegate = <span class="keyword">self</span>.animotor;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>调用<code>presentViewController: animated: completion:</code>方法弹出模态控制器</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//2.</span></div><div class="line">    vc.modalPresentationStyle = <span class="built_in">UIModalPresentationCustom</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//3.</span></div><div class="line">    <span class="keyword">self</span>.animotor = [[MusicAnimator alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//4.</span></div><div class="line">    vc.transitioningDelegate = <span class="keyword">self</span>.animotor;</div><div class="line">    </div><div class="line">    <span class="comment">//5.</span></div><div class="line">    [<span class="keyword">self</span> presentViewController:vc animated:<span class="literal">YES</span> completion:^&#123;</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="自定义presentedViewController的代理"><a href="#自定义presentedViewController的代理" class="headerlink" title="自定义presentedViewController的代理"></a>自定义<code>presentedViewController</code>的代理</h3><blockquote>
+<p>这个代理集成了几乎所有弹出<code>模态</code>的自定义操作, 在<a href="https://developer.apple.com/library/prerelease/content/featuredarticles/ViewControllerPGforiPhoneOS/DefiningCustomPresentations.html#//apple_ref/doc/uid/TP40007457-CH25-SW1" target="_blank" rel="external">官方文档</a>中, 苹果为我们详细说明了UIKit是如何通过这个代理完成弹出<code>模态</code>的操作</p>
+</blockquote>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;li&gt;</span>调用<span class="params">&lt;strong&gt;</span>代理<span class="params">&lt;/strong&gt;</span>的 <span class="params">&lt;strong&gt;</span>presentationControllerForPresentedViewController:presentingViewController:sourceViewController:<span class="params">&lt;/strong&gt;</span> 方法检索自定义的 presentationController</div><div class="line">(实际上这里的<span class="params">&lt;strong&gt;</span>代理<span class="params">&lt;/strong&gt;</span>就是 presentedViewController 的代理, 也就是本例中继承自 UIPresentationController 类的 MusicAnimator 对象)<span class="params">&lt;/li&gt;</span></div><div class="line"><span class="params">&lt;li&gt;</span>如果<span class="params">&lt;strong&gt;</span>代理<span class="params">&lt;/strong&gt;</span>中存在动画和交互式动画对象，则调用它们<span class="params">&lt;/li&gt;</span></div><div class="line"><span class="params">&lt;li&gt;</span><span class="params">&lt;strong&gt;</span>调用 presentationController 的 presentationTransitionWillBegin 方法<span class="params">&lt;/strong&gt;</span></div><div class="line">程序员在对于该方法的实现中, 可以添加自定义 view 到视图层级结构中, 并配置这些 view 的动画。<span class="params">&lt;/li&gt;</span></div><div class="line"><span class="params">&lt;li&gt;</span><span class="params">&lt;strong&gt;</span>从 presentationController 获取 presentedView<span class="params">&lt;/strong&gt;</span></div><div class="line">该方法返回的 view 由动画对象移动到最终确定的位置. 正常情况下，该方法返回 presentedViewController 的根视图. 如果需要的话, 程序员自定义的 presentationController 可以用自定义背景视图替换该视图. </div><div class="line">如果你指定了一个不同的视图，你必须将presentedViewController的根视图添加到自己的视图层级结构中<span class="params">&lt;/li&gt;</span></div><div class="line"><span class="params">&lt;li&gt;</span><span class="params">&lt;strong&gt;</span>执行过渡动画<span class="params">&lt;/strong&gt;</span></div><div class="line">过渡动画包括动画对象创建的主要动画, 和其他由程序员配置的与主动画一起运行的动画。</div><div class="line">关于过渡动画的更多信息，参见[The Transition Animation Sequence](https:<span class="comment">//developer.apple.com/library/prerelease/content/featuredarticles/ViewControllerPGforiPhoneOS/CustomizingtheTransitionAnimations.html#//apple_ref/doc/uid/TP40007457-CH16-SW2)</span></div><div class="line">在动画过程中，UIKit 调用自定义的 presentationController 的 containerViewWillLayoutSubviews 和 containerViewDidLayoutSubviews 方法，这样你可以根据需要调整自定义视图的布局。<span class="params">&lt;/li&gt;</span></div><div class="line"><span class="params">&lt;li&gt;</span>当过渡动画完成时，会调用 presentationTransitionDidEnd: 方法<span class="params">&lt;/li&gt;</span></div></pre></td></tr></table></figure>
       
     </div>
 
@@ -602,7 +619,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现自定义模态控制器的具体步骤"><span class="nav-number">2.</span> <span class="nav-text">实现自定义模态控制器的具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在初始控制器需要完成的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">在初始控制器需要完成的步骤</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现自定义模态控制器的具体步骤"><span class="nav-number">2.</span> <span class="nav-text">实现自定义模态控制器的具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在初始控制器需要完成的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">在初始控制器需要完成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义presentedViewController的代理"><span class="nav-number">2.2.</span> <span class="nav-text">自定义presentedViewController的代理</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
