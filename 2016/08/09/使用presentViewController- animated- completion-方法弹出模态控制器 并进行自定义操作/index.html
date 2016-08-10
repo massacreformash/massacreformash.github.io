@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="方法实现,项目笔记," />
+  <meta name="keywords" content="项目笔记,方法实现," />
 
 
 
@@ -98,7 +98,7 @@
 比较坑">
 <meta property="og:image" content="http://d.pr/i/kF4H+">
 <meta property="og:image" content="http://d.pr/i/F6NU+">
-<meta property="og:updated_time" content="2016-08-10T17:07:09.000Z">
+<meta property="og:updated_time" content="2016-08-10T17:12:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作">
 <meta name="twitter:description" content="前言
@@ -394,10 +394,7 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#import</span> <span class="string">"MusicViewController.h"</span></div></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">  </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><ol>
 <li>设置<code>presentedViewController</code>的<code>modalPresentationStyle</code>属性为<code>UIModalPresentationCustom</code></li>
-</ol>
-</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1.</span></div><div class="line">    MusicViewController *vc = [[MusicViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">//2.</span></div><div class="line">    vc.modalPresentationStyle = <span class="built_in">UIModalPresentationCustom</span>;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
@@ -451,11 +448,11 @@
 </blockquote>
 <h4 id="显示自定义的-presentedViewController"><a href="#显示自定义的-presentedViewController" class="headerlink" title="显示自定义的 presentedViewController"></a>显示自定义的 <code>presentedViewController</code></h4><blockquote>
 <p>在此之前, 由于模态控制器还没有背景色, 所以先给其设置一个背景色, 以便观察, 这里设置的是<strong>黄色</strong></p>
+</blockquote>
 <ul>
 <li>最首要的任务, 是先要能够将一个完整的模态控制器显示出来, 那么在代理控制器中, 首先要实现下面这个方法</li>
 <li>该方法就是上面<code>步骤1</code>中, <code>UIKit</code> 用来检索自定义的 <code>presentationController</code>的方法</li>
 </ul>
-</blockquote>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@implementation</span> MusicAnimator</div><div class="line"></div><div class="line">- (UIPresentationController *)<span class="attribute">presentationControllerForPresentedViewController</span>:(UIViewController *)presented</div><div class="line">                                                      <span class="attribute">presentingViewController</span>:(UIViewController *)presenting</div><div class="line">                                                          <span class="attribute">sourceViewController</span>:(UIViewController *)source &#123;</div><div class="line">    </div><div class="line">    MusicAnimator* myPresentation = <span class="selector-attr">[[MusicAnimator alloc]</span></div><div class="line">                                     <span class="selector-tag">initWithPresentedViewController</span><span class="selector-pseudo">:presented</span> <span class="selector-tag">presentingViewController</span><span class="selector-pseudo">:presenting</span>];</div><div class="line">    </div><div class="line">    return myPresentation;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="variable">@end</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>运行测试<br>点击屏幕后, 会弹出如下界面<br><img src="http://d.pr/i/kF4H+" alt="测试"></p>
@@ -489,9 +486,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/方法实现/" rel="tag">#方法实现</a>
-          
             <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
+          
+            <a href="/tags/方法实现/" rel="tag">#方法实现</a>
           
         </div>
       
