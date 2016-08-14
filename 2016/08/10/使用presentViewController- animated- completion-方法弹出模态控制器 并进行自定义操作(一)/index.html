@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="项目笔记,方法实现," />
+  <meta name="keywords" content="方法实现,项目笔记," />
 
 
 
@@ -89,8 +89,8 @@
 更合适的实现方式应该就是使用presentViewController: animated: completion:方法弹出模态控制器来做, 但如果不进行自定义的话, 弹出的控制器永远都是和屏幕一样大, 因此需要进行自定义
 比较坑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作">
-<meta property="og:url" content="http://yoursite.com/2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/index.html">
+<meta property="og:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
+<meta property="og:url" content="http://yoursite.com/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/index.html">
 <meta property="og:site_name" content="MFMAL's Blog">
 <meta property="og:description" content="前言
 自己在做项目的时候, 需要实现一个自定义弹窗的效果, 同时在上面实现很多子功能, 此时如果用自定义的View来做的话就显得有些力不从心了, 必须想到另一种方法实现
@@ -98,9 +98,10 @@
 比较坑">
 <meta property="og:image" content="http://d.pr/i/kF4H+">
 <meta property="og:image" content="http://d.pr/i/F6NU+">
-<meta property="og:updated_time" content="2016-08-10T17:12:25.000Z">
+<meta property="og:image" content="http://d.pr/i/Y6cs+">
+<meta property="og:updated_time" content="2016-08-14T11:38:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作">
+<meta name="twitter:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
 <meta name="twitter:description" content="前言
 自己在做项目的时候, 需要实现一个自定义弹窗的效果, 同时在上面实现很多子功能, 此时如果用自定义的View来做的话就显得有些力不从心了, 必须想到另一种方法实现
 更合适的实现方式应该就是使用presentViewController: animated: completion:方法弹出模态控制器来做, 但如果不进行自定义的话, 弹出的控制器永远都是和屏幕一样大, 因此需要进行自定义
@@ -126,9 +127,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/"/>
 
-  <title> 使用`presentViewController`方法弹出模态控制器 并进行自定义操作 | MFMAL's Blog </title>
+  <title> 使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一) | MFMAL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +292,7 @@
             
             
               
-                使用`presentViewController`方法弹出模态控制器 并进行自定义操作
+                使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)
               
             
           </h1>
@@ -303,8 +304,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-09T19:56:43+08:00" content="2016-08-09">
-              2016-08-09
+            <time itemprop="dateCreated" datetime="2016-08-10T19:56:43+08:00" content="2016-08-10">
+              2016-08-10
             </time>
           </span>
 
@@ -333,8 +334,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/" itemprop="commentsCount"></span>
+                <a href="/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -344,7 +345,7 @@
 
           
           
-             <span id="/2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/" class="leancloud_visitors" data-flag-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作">
+             <span id="/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/" class="leancloud_visitors" data-flag-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -464,6 +465,38 @@
 <blockquote>
 <p>运行测试<br>点击屏幕后, 会弹出如下界面<br><img src="http://d.pr/i/F6NU+" alt="测试"></p>
 </blockquote>
+<h4 id="管理自定义View并添加动画"><a href="#管理自定义View并添加动画" class="headerlink" title="管理自定义View并添加动画"></a>管理自定义<code>View</code>并添加动画</h4><ul>
+<li>文档描述如下(自己翻译的, 些许不准, 请指正😊)</li>
+</ul>
+<blockquote>
+<ul>
+<li>自定义<code>presentation</code>效果通常包括”添加自定义 View “到要<code>presented</code>的控制器中, 程序员可以通过这种方式实现简单的视觉效果, 或者添加一些实际的动作到<code>presentation</code>过程中.</li>
+<li>举例来说, 可以添加一个包含着手势对象的<code>backgroundView</code>到需要<code>presented</code>的控制器的<code>bounds</code>之外, 来追踪一些特定的手势操作(我自己注: 如点击<code>presented</code>的控制器外可以将其 dismiss 掉之类的操作)</li>
+<li>在<code>presentation</code>的过程中, 所有<code>创建</code>和<code>管理</code>自定义 View 的操作, 都是由用户自定义的<code>presentationController</code>负责的.</li>
+<li>通常情况下, 创建自定义 View 的操作, 都是在初始化<code>presentationController</code>的方法中完成的. 下面的例子展示了一个初始化自定义 View , 并对其进行一些简单配置的过程</li>
+</ul>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//初始化presentationController的方法</span></div><div class="line">- (<span class="keyword">instancetype</span>)initWithPresentedViewController:(<span class="built_in">UIViewController</span> *)presentedViewController</div><div class="line">                       presentingViewController:(<span class="built_in">UIViewController</span> *)presentingViewController &#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithPresentedViewController:presentedViewController</div><div class="line">                         presentingViewController:presentingViewController];</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">self</span>) &#123;</div><div class="line">        <span class="comment">// 初始化一个暗色视图, 并设置初始外观</span></div><div class="line">        <span class="keyword">self</span>.dimmingView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">        [<span class="keyword">self</span>.dimmingView setBackgroundColor:[<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.0</span> alpha:<span class="number">0.4</span>]];</div><div class="line">        [<span class="keyword">self</span>.dimmingView setAlpha:<span class="number">0.0</span>];</div><div class="line">        <span class="comment">//注意! 这里并没有将初始化的自定义 View 添加上去!</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>继续文档描述</li>
+</ul>
+<blockquote>
+<ul>
+<li>想要将自定义 View 渲染到屏幕上并开始做动画的话, 需要调用<code>presentationTransitionWillBegin</code>方法. 在该方法中, 可以配置自定义的 View 的属性并将其添加到<code>presentationController</code>的<code>containerView</code>中</li>
+<li>如果想要做动画, 则可以选用<code>presentedViewController</code>或者<code>presentingViewController</code>的<code>transitionCoordinator</code>来创建动画.</li>
+<li>不要在这个方法中修改有关于<code>presentedViewController</code>之上的任何 View (也就是说, 这个方法只用来设置自定义 View 和动画效果, 而不是设置放置在模态控制器上的view的)</li>
+<li><code>transitionCoordinator</code>这个动画对象, 就是负责将<code>presentedViewController</code>渲染到之前我们在<code>frameOfPresentedViewInContainerView</code>方法中返回的<code>frame</code>的位置上的对象</li>
+</ul>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)presentationTransitionWillBegin &#123;</div><div class="line">    <span class="comment">//取到 presentationController 的容器视图</span></div><div class="line">    <span class="built_in">UIView</span>* containerView = [<span class="keyword">self</span> containerView];</div><div class="line">    <span class="comment">//取到准备跳转的 presentedViewController</span></div><div class="line">    <span class="built_in">UIViewController</span>* presentedViewController = [<span class="keyword">self</span> presentedViewController];</div><div class="line">    </div><div class="line">    <span class="comment">//设置暗色视图的 frame 为 containerView 的大小(也就是屏幕的大小)</span></div><div class="line">    <span class="comment">////设置暗色视图的 alpha 值 为0</span></div><div class="line">    [[<span class="keyword">self</span> dimmingView] setFrame:[containerView bounds]];</div><div class="line">    [[<span class="keyword">self</span> dimmingView] setAlpha:<span class="number">0.0</span>];</div><div class="line">    </div><div class="line">    <span class="comment">//将暗色视图插入到 containerView 的所有视图的最下方</span></div><div class="line">    [containerView insertSubview:[<span class="keyword">self</span> dimmingView] atIndex:<span class="number">0</span>];</div><div class="line">    </div><div class="line">    <span class="comment">//设置暗色视图的渐入效果</span></div><div class="line">    <span class="keyword">if</span>([presentedViewController transitionCoordinator]) &#123;</div><div class="line">        [[presentedViewController transitionCoordinator]</div><div class="line">         animateAlongsideTransition:^(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerTransitionCoordinatorContext</span>&gt;</div><div class="line">                                      context) &#123;</div><div class="line">             <span class="comment">//渐入动画</span></div><div class="line">             [[<span class="keyword">self</span> dimmingView] setAlpha:<span class="number">1.0</span>];</div><div class="line">         &#125; completion:<span class="literal">nil</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        [[<span class="keyword">self</span> dimmingView] setAlpha:<span class="number">1.0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试<br>点击屏幕后, 会弹出如下界面, 可以看到在弹出的黄色模态控制器后, 有一个暗色的背景由浅入深做了动画<br><img src="http://d.pr/i/Y6cs+" alt="测试"></p>
+</blockquote>
+<p><br><br></p>
+<ul>
+<li>这篇文章已经实现了如何弹出一个自定义<code>frame</code>的模态控制器, 并在其跳转过程中实现一些自定义的<code>view</code>和动画效果</li>
+<li>下一篇文章, 我将再把文档中如何<code>dismiss</code>掉这个控制器的方法进行一系列实现</li>
+</ul>
 
       
     </div>
@@ -486,9 +519,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
-          
             <a href="/tags/方法实现/" rel="tag">#方法实现</a>
+          
+            <a href="/tags/项目笔记/" rel="tag">#项目笔记</a>
           
         </div>
       
@@ -529,8 +562,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/"
-           data-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作" data-url="http://yoursite.com/2016/08/09/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作/">
+      <div class="ds-thread" data-thread-key="2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/"
+           data-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)" data-url="http://yoursite.com/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/">
       </div>
     
   </div>
@@ -659,7 +692,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现自定义模态控制器的具体步骤"><span class="nav-number">2.</span> <span class="nav-text">实现自定义模态控制器的具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在初始控制器需要完成的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">在初始控制器需要完成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义presentedViewController的代理"><span class="nav-number">2.2.</span> <span class="nav-text">自定义presentedViewController的代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示自定义的-presentedViewController"><span class="nav-number">2.2.1.</span> <span class="nav-text">显示自定义的 presentedViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-presentedViewController-的frame大小"><span class="nav-number">2.2.2.</span> <span class="nav-text">修改 presentedViewController 的frame大小</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现自定义模态控制器的具体步骤"><span class="nav-number">2.</span> <span class="nav-text">实现自定义模态控制器的具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在初始控制器需要完成的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">在初始控制器需要完成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义presentedViewController的代理"><span class="nav-number">2.2.</span> <span class="nav-text">自定义presentedViewController的代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示自定义的-presentedViewController"><span class="nav-number">2.2.1.</span> <span class="nav-text">显示自定义的 presentedViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-presentedViewController-的frame大小"><span class="nav-number">2.2.2.</span> <span class="nav-text">修改 presentedViewController 的frame大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理自定义View并添加动画"><span class="nav-number">2.2.3.</span> <span class="nav-text">管理自定义View并添加动画</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
