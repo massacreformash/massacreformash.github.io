@@ -90,7 +90,7 @@
 比较坑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
-<meta property="og:url" content="http://yoursite.com/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/index.html">
 <meta property="og:site_name" content="MFMAL's Blog">
 <meta property="og:description" content="前言
 自己在做项目的时候, 需要实现一个自定义弹窗的效果, 同时在上面实现很多子功能, 此时如果用自定义的View来做的话就显得有些力不从心了, 必须想到另一种方法实现
@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://d.pr/i/kF4H+">
 <meta property="og:image" content="http://d.pr/i/F6NU+">
 <meta property="og:image" content="http://d.pr/i/Y6cs+">
-<meta property="og:updated_time" content="2016-08-14T11:38:43.000Z">
+<meta property="og:updated_time" content="2016-08-15T13:41:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
 <meta name="twitter:description" content="前言
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/"/>
 
   <title> 使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一) | MFMAL's Blog </title>
 </head>
@@ -334,8 +334,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/" itemprop="commentsCount"></span>
+                <a href="/2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,7 +345,7 @@
 
           
           
-             <span id="/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/" class="leancloud_visitors" data-flag-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
+             <span id="/2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/" class="leancloud_visitors" data-flag-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -492,6 +492,17 @@
 <blockquote>
 <p>运行测试<br>点击屏幕后, 会弹出如下界面, 可以看到在弹出的黄色模态控制器后, 有一个暗色的背景由浅入深做了动画<br><img src="http://d.pr/i/Y6cs+" alt="测试"></p>
 </blockquote>
+<h4 id="弹出模态完成后的操作"><a href="#弹出模态完成后的操作" class="headerlink" title="弹出模态完成后的操作"></a>弹出模态完成后的操作</h4><ul>
+<li>文档描述如下(自己翻译的, 些许不准, 请指正😊)</li>
+</ul>
+<blockquote>
+<ul>
+<li>如果用户在跳转过程中取消了跳转操作(也就是跳转未完成), 那么程序员可以在<code>presentation</code>过程的最后, 使用<code>presentationTransitionDidEnd:</code>方法处理一些由于取消操作导致的必要的清理工作</li>
+<li>如果一些所需的门槛条件没有满足的话, 那么交互式动画对象可能会取消跳转过程, 此时<code>presentationTransitionDidEnd:</code>方法中的<code>completed</code>参数会被设置为<code>NO</code></li>
+<li>一旦跳转被取消, 那么程序员需要移除所有在跳转过程一开始被添加的自定义view, (并且返回之前配置的<code>View</code> &lt;– 这一步应该不是必须的)</li>
+</ul>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)presentationTransitionDidEnd:(<span class="built_in">BOOL</span>)completed &#123;</div><div class="line">    <span class="comment">//如果跳转过程被取消, 则将暗色视图移除</span></div><div class="line">    <span class="keyword">if</span> (!completed)</div><div class="line">        [<span class="keyword">self</span>.dimmingView removeFromSuperview];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><br><br></p>
 <ul>
 <li>这篇文章已经实现了如何弹出一个自定义<code>frame</code>的模态控制器, 并在其跳转过程中实现一些自定义的<code>view</code>和动画效果</li>
@@ -538,6 +549,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/08/14/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(二)/" rel="prev" title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(二)">
+                使用`presentViewController`方法弹出模态控制器 并进行自定义操作(二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -562,8 +577,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/"
-           data-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)" data-url="http://yoursite.com/2016/08/10/使用presentViewController- animated- completion-方法弹出模态控制器 并进行自定义操作(一)/">
+      <div class="ds-thread" data-thread-key="2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/"
+           data-title="使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)" data-url="http://yoursite.com/2016/08/10/使用`presentViewController`方法弹出模态控制器 并进行自定义操作(一)/">
       </div>
     
   </div>
@@ -608,7 +623,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -692,7 +707,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现自定义模态控制器的具体步骤"><span class="nav-number">2.</span> <span class="nav-text">实现自定义模态控制器的具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在初始控制器需要完成的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">在初始控制器需要完成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义presentedViewController的代理"><span class="nav-number">2.2.</span> <span class="nav-text">自定义presentedViewController的代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示自定义的-presentedViewController"><span class="nav-number">2.2.1.</span> <span class="nav-text">显示自定义的 presentedViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-presentedViewController-的frame大小"><span class="nav-number">2.2.2.</span> <span class="nav-text">修改 presentedViewController 的frame大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理自定义View并添加动画"><span class="nav-number">2.2.3.</span> <span class="nav-text">管理自定义View并添加动画</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现自定义模态控制器的具体步骤"><span class="nav-number">2.</span> <span class="nav-text">实现自定义模态控制器的具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在初始控制器需要完成的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">在初始控制器需要完成的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义presentedViewController的代理"><span class="nav-number">2.2.</span> <span class="nav-text">自定义presentedViewController的代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示自定义的-presentedViewController"><span class="nav-number">2.2.1.</span> <span class="nav-text">显示自定义的 presentedViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-presentedViewController-的frame大小"><span class="nav-number">2.2.2.</span> <span class="nav-text">修改 presentedViewController 的frame大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理自定义View并添加动画"><span class="nav-number">2.2.3.</span> <span class="nav-text">管理自定义View并添加动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弹出模态完成后的操作"><span class="nav-number">2.2.4.</span> <span class="nav-text">弹出模态完成后的操作</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
