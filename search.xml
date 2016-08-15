@@ -6,7 +6,45 @@
     <entry>
       <title><![CDATA[使用`presentViewController`方法弹出模态控制器 并进行自定义操作(二)]]></title>
       <url>http://yoursite.com/2016/08/14/%E4%BD%BF%E7%94%A8%60presentViewController%60%E6%96%B9%E6%B3%95%E5%BC%B9%E5%87%BA%E6%A8%A1%E6%80%81%E6%8E%A7%E5%88%B6%E5%99%A8%20%E5%B9%B6%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C(%E4%BA%8C)/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>前一篇文章实现了从初始控制器中通过点击操作弹出<code>模态控制器</code>的操作, 并进行了一系列在弹出过程中的自定义效果</li>
+<li>这篇文章将继续之前的讨论, 完成之后要<code>dismiss</code>掉<code>模态控制器</code>的一系列方法的实现过程<blockquote>
+<p>所谓<code>dismiss</code>, 就是让<code>模态视图</code>从屏幕上消失的操作</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="UIKit在dismiss过程中都干了啥"><a href="#UIKit在dismiss过程中都干了啥" class="headerlink" title="UIKit在dismiss过程中都干了啥"></a><code>UIKit</code>在<code>dismiss</code>过程中都干了啥</h2><ul>
+<li>依旧是翻译官方文档中关于<code>UIKit</code>在<code>dismiss</code>过程中的调用过程</li>
+</ul>
+<blockquote>
+<ol>
+<li>从当前可见的<code>viewController</code>中取到之前程序员自定义的<code>presentationController</code></li>
+<li>如果存在动画对象或者交互式动画对象的话, 就向过渡代理请求该对象</li>
+<li><strong>调用<code>presentationController</code>中的<code>dismissalTransitionWillBegin</code>方法</strong><ul>
+<li>在该方法中, 程序员可以添加自定义的 view 到视图的层级结构中, 并对这些自定义的 view 配置动画</li>
+</ul>
+</li>
+<li>从自定义的<code>presentationController</code>取到已经弹出的<code>presentedView</code></li>
+<li><strong>执行<code>dismiss</code>过程中的跳转动画</strong><ul>
+<li>跳转过渡动画包括一个主动画(由动画对象<code>animator objects</code>创建)和若干随主动画一起执行的自定义动画效果. 如果想了解更多有关过渡动画的信息, 可以参阅<a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/CustomizingtheTransitionAnimations.html#//apple_ref/doc/uid/TP40007457-CH16-SW2" target="_blank" rel="external">The Transition Animation Sequence 文档</a></li>
+<li>在动画的执行过程中, <code>UIKit</code>会调用我们自定义的<code>presentationController</code>中的<code>containerViewWillLayoutSubviews</code>方法和<code>containerViewDidLayoutSubviews</code>方法, 程序员可以在这两个方法中移除之前自定义的约束(应该是 view 吧?)</li>
+</ul>
+</li>
+<li>在动画结束时, 会调用<code>dismissalTransitionDidEnd:</code>方法</li>
+</ol>
+</blockquote>
+<h2 id="实现dismiss模态控制器的具体步骤"><a href="#实现dismiss模态控制器的具体步骤" class="headerlink" title="实现dismiss模态控制器的具体步骤"></a>实现<code>dismiss</code>模态控制器的具体步骤</h2><blockquote>
+<ul>
+<li>当模态控制器被<code>dismiss</code>时, 可以使用<code>dismissalTransitionDidEnd:</code>方法来从视图层级结构中移除自定义的 view</li>
+<li>而如果想要在<code>dismiss</code>的过程中执行一些消失的动画效果, 也可以在<code>dismissalTransitionDidEnd:</code>中进行自定义</li>
+</ul>
+</blockquote>
+<h3 id="开始dismiss过程调用的方法"><a href="#开始dismiss过程调用的方法" class="headerlink" title="开始dismiss过程调用的方法"></a>开始<code>dismiss</code>过程调用的方法</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-</span> (void)<span class="selector-tag">dismissalTransitionWillBegin</span> &#123;</div><div class="line">    <span class="comment">//将暗色视图渐出</span></div><div class="line">    <span class="selector-tag">if</span>([[self presentedViewController] transitionCoordinator]) &#123;</div><div class="line">        <span class="selector-attr">[[[self presentedViewController]</span> <span class="selector-tag">transitionCoordinator</span>]</div><div class="line">         <span class="selector-tag">animateAlongsideTransition</span>:^(id&lt;UIViewControllerTransitionCoordinatorContext&gt;</div><div class="line">                                      context) &#123;</div><div class="line">             <span class="selector-attr">[[self dimmingView]</span> <span class="selector-tag">setAlpha</span><span class="selector-pseudo">:0.0</span>];</div><div class="line">         &#125; <span class="attribute">completion</span>:nil];</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">else</span> &#123;</div><div class="line">        <span class="selector-attr">[[self dimmingView]</span> <span class="selector-tag">setAlpha</span><span class="selector-pseudo">:0.0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="dismiss过程结束后调用的方法"><a href="#dismiss过程结束后调用的方法" class="headerlink" title="dismiss过程结束后调用的方法"></a><code>dismiss</code>过程结束后调用的方法</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)dismissalTransitionDidEnd:(<span class="built_in">BOOL</span>)completed &#123;</div><div class="line">    <span class="comment">//如果 dismiss 过程成功结束, 则将暗色视图从层级结构中移除</span></div><div class="line">    <span class="keyword">if</span> (completed)</div><div class="line">        [<span class="keyword">self</span>.dimmingView removeFromSuperview];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行测试<br>可以看到, 在<code>dismiss</code>的过程中, 暗色的背景视图由深至浅消失不见了<br><img src="http://d.pr/i/1iQMa+" alt="测试"></p>
+</blockquote>
+]]></content>
     </entry>
     
     <entry>
