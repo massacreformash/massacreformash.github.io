@@ -797,9 +797,9 @@
     </entry>
     
     <entry>
-      <title><![CDATA[GCD 使用手册]]></title>
-      <url>http://yoursite.com/2016/05/08/GCD%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
-      <content type="html"><![CDATA[<h2 id="GCD-使用手册"><a href="#GCD-使用手册" class="headerlink" title="GCD 使用手册"></a>GCD 使用手册</h2><ul>
+      <title><![CDATA[GCD 使用手册(一)]]></title>
+      <url>http://yoursite.com/2016/05/08/GCD%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C(%E4%B8%80)/</url>
+      <content type="html"><![CDATA[<ul>
 <li>注: 在网上看到了这篇文章的翻译, 实在是错漏太多, 而且极不通顺. 所以自己准备着手翻译一遍, 原文地址在下面附上</li>
 <li><a href="">http://khanlou.com/2016/04/the-GCD-handbook/</a></li>
 </ul>
@@ -856,6 +856,7 @@
 </ul>
 </li>
 </ul>
+<p>未完待续.</p>
 ]]></content>
     </entry>
     
