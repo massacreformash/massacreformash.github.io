@@ -796,6 +796,69 @@
 ]]></content>
     </entry>
     
+    <entry>
+      <title><![CDATA[GCD 使用手册]]></title>
+      <url>http://yoursite.com/2016/05/08/GCD%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
+      <content type="html"><![CDATA[<h2 id="GCD-使用手册"><a href="#GCD-使用手册" class="headerlink" title="GCD 使用手册"></a>GCD 使用手册</h2><ul>
+<li>注: 在网上看到了这篇文章的翻译, 实在是错漏太多, 而且极不通顺. 所以自己准备着手翻译一遍, 原文地址在下面附上</li>
+<li><a href="">http://khanlou.com/2016/04/the-GCD-handbook/</a></li>
+</ul>
+<blockquote>
+<p><code>Grand Central Dispatch</code>, 或者说<code>GCD</code>, 是一个非常有力的工具. 它向我们提供了一些底层的组件, 像是<code>队列</code>或是<code>信号量</code>等这些组件, 可以让我们通过有趣的排列组合方式达到多线程的效果. 但不幸的是, 这个 C 语言为底层的 API 框架有一些晦涩难懂, 并且没有一些明显的提示能够告诉我们如何将这些底层的框架组合成为实际的应用场景</p>
+<p>在这篇文章中, 我希望能将一些常见的应用场景通过<code>GCD</code>的API向大家呈现</p>
+</blockquote>
+<h3 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h3><blockquote>
+<p>后台线程有可能是最简单的应用场景了, 这可以让我们在后台的线程中执行一些代码, 并返回到主线程继续处理(像是<code>UIKit</code>中的一些组件, 必须在主线程中进行操作)</p>
+<p><strong>在这个教程中, 我会使用类似于<code>doSomeExpensiveWork()</code>这样的方法, 来表示耗时操作(耗时操作: 即我们应该放在异步中执行的方法, 防止主线程被阻塞)</strong></p>
+</blockquote>
+<ul>
+<li>这个模式可以以下面的代码来实现</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let defaultPriority = DISPATCH_QUEUE_PRIORITY_DEFAULT</div><div class="line">let backgroundQueue = dispatch_get_global_queue(<span class="name">defaultPriority</span>, <span class="number">0</span>)</div><div class="line">dispatch_async(<span class="name">backgroundQueue</span>, &#123;</div><div class="line">	let result = doSomeExpensiveWork()</div><div class="line">	dispatch_async(<span class="name">dispatch_get_main_queue</span>(), &#123;</div><div class="line">		//use `result` somehow</div><div class="line">	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>在实际应用中, 除了<code>DISPATCH_QUEUE_PRIORITY_DEFAULT</code>我没有用过其他队列的优先级. <code>dispatch_get_global_queue(defaultPriority, 0)</code>这个方法会返回一个全局队列, 可以将上百个线程放在后台中进行操作.</li>
+<li>如果我们需要将耗时操作放在一个一个特定的队列中执行, 我们可以使用<code>dispatch_queue_create</code>方法创建自己的队列. <code>dispatch_queue_create</code>这个方法可以让我们自行给队列命名(而非返回一个唯一的<code>全局队列</code>), 并且可以选择所创建的队列是串行队列还是并行队列</li>
+<li>需要注意的是, 每一次调用使用的都是<code>dispatch_async</code>操作, 而不是<code>dispatch_sync</code>操作(注: async即asynchronous: 异步操作, sync即synchronous: 同步操作). <code>dispatch_async</code>会在block执行完毕前就返回, 并且执行下面的代码, 但<code>dispatch_sync</code>则会等待block中的代码执行完毕后才会返回. The inner call can use dispatch_sync (because it doesn’t matter when it returns), but the outer call must be dispatch_async (otherwise the main thread will be blocked).</li>
+</ul>
+<h3 id="创建单例"><a href="#创建单例" class="headerlink" title="创建单例"></a>创建单例</h3><blockquote>
+<p><code>dispatch_once</code>这个 API 可以用来创建单例. 在 Swift 中这已经不是必须的了, 因为在 Swift 中存在一种更简单的方式来创建单例(注: 即可以通过<code>static let</code>实现). 不过在 OBjective-C 中, 这个方式还是可以供后来人参考的</p>
+</blockquote>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype) </span><span class="keyword">sharedInstance </span>&#123;  </div><div class="line">	static <span class="keyword">dispatch_once_t </span>onceToken<span class="comment">;  </span></div><div class="line">	static id <span class="keyword">sharedInstance; </span> </div><div class="line">	<span class="keyword">dispatch_once(&amp;onceToken, </span>^&#123;  </div><div class="line">		<span class="keyword">sharedInstance </span>= [[self alloc] init]<span class="comment">;  </span></div><div class="line">	&#125;)<span class="comment">;  </span></div><div class="line">	return <span class="keyword">sharedInstance; </span> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="block调用的串行化"><a href="#block调用的串行化" class="headerlink" title="block调用的串行化"></a>block调用的串行化</h3><blockquote>
+<p>从这里开始, GCD 这种机制开始变的有趣起来了. 使用<code>信号量</code>, 我们可以将某一个线程阻塞任意时间, 知道另一个线程发出信号. <code>信号量(Semaphore)</code>, 就像 GCD 中其它的组件一样, 是线程安全的, 并且可以在任意地方触发.<br><br><br><br>信号量可以被用作当我们需要将一个异步操作转变为同步操作, 而又无法修改该操作时的一种方法</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// on a background queue</div><div class="line">dispatch_semaphore_t semaphore = dispatch_semaphore_create(<span class="number">0</span>)</div><div class="line">doSomeExpensiveWorkAsynchronously(<span class="name">completionBlock</span>: &#123;</div><div class="line">    dispatch_semaphore_signal(<span class="name">semaphore</span>)</div><div class="line">&#125;)</div><div class="line">dispatch_semaphore_wait(<span class="name">semaphore</span>, DISPATCH_TIME_FOREVER)</div><div class="line">//the expensive asynchronous work is now done</div></pre></td></tr></table></figure>
+<ul>
+<li>调用<code>dispatch_semaphore_wait</code>方法会阻塞线程, 直到<code>dispatch_semaphore_signal</code>方法被调用. 这意味着<code>signal</code>必须在不同的线程中被调用, 因为当前线程已经完全被阻塞, 如果调用则会造成死锁. 此外, 我们也不能再主线程中调用<code>wait</code>方法, 而只能在后台线程中调用.</li>
+<li>在调用<code>dispatch_semaphore_wait</code>方法时, 我们可以选择任意的超时时间, 但我更倾向于使用<code>DISPATCH_TIME_FOREVER</code>.</li>
+<li>看到这里, 我们可能还是不太明确为什么要在已经有block的情况下将其串行化, 但这个机制迟早是有用的. 我最近使用到它的一个情景是, 我需要将一系列异步操作在后台串行执行. 简单抽象来说, 这个情景可以被称作<code>异步串行机制</code>:</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typealias</span> <span class="type">DoneBlock</span> = () -&gt; ()</div><div class="line"><span class="keyword">typealias</span> <span class="type">WorkBlock</span> = (<span class="type">DoneBlock</span>) -&gt; ()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncSerialWorker</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">let</span> serialQueue = dispatch_queue_create(<span class="string">"com.khanlou.serial.queue"</span>, <span class="type">DISPATCH_QUEUE_SERIAL</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">enqueueWork</span><span class="params">(work: WorkBlock)</span></span> &#123;</div><div class="line">        dispatch_async(serialQueue) &#123;</div><div class="line">            <span class="keyword">let</span> semaphore = dispatch_semaphore_create(<span class="number">0</span>)</div><div class="line">            work(&#123;</div><div class="line">                dispatch_semaphore_signal(semaphore)</div><div class="line">            &#125;)</div><div class="line">            dispatch_semaphore_wait(semaphore, <span class="type">DISPATCH_TIME_FOREVER</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>我们可以看到, 在这个简单的类中, 我们创建了一个串行队列, 并且允许使用一个block将要执行的代码入队. 同时, 这个<code>WorkBlock</code>在执行完毕后提供了一个<code>DoneBlock</code>作为返回值, 而这个<code>DoneBlock</code>则会触发<code>信号量</code>, 来使得这个串行队列得以继续执行.</li>
+</ul>
+<h3 id="限制并发block的数量"><a href="#限制并发block的数量" class="headerlink" title="限制并发block的数量"></a>限制并发block的数量</h3><blockquote>
+<p>在之前的例子中, 信号量仅仅作为简单的标记进行使用, 但实际上它也可以作为有限资源的计数器来使用. 如果你仅仅希望针对某一特定的资源服务开启指定数量的网络连接, 你可以参考下面的代码: </p>
+</blockquote>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LimitedWorker</span> &#123;</span></div><div class="line">	private <span class="keyword">let</span> serialQueue = dispatch_queue_create(<span class="string">"com.khanlou.serial.queue"</span>, DISPATCH_QUEUE_SERIAL)</div><div class="line">	private <span class="keyword">let</span> concurrentQueue = dispatch_queue_create(<span class="string">"com.khanlou.concurrent.queue"</span>, DISPATCH_QUEUE_CONCURRENT)</div><div class="line">	private <span class="keyword">let</span> semaphore: dispatch_semaphore_t</div><div class="line">		</div><div class="line">	init(limit: Int) &#123;</div><div class="line">        semaphone = dispatch_semaphore_create(limit)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func enqueue<span class="function"><span class="params">(task: () -&gt; ())</span> &#123;</span></div><div class="line">        <span class="title">dispatch_async</span><span class="params">(serialQueue)</span> &#123;</div><div class="line">            <span class="title">dispatch_semaphore_wait</span><span class="params">(self.semaphore, DISPATCH_TIME_FOREVER)</span></div><div class="line">            <span class="title">dispatch_async</span><span class="params">(self.concurrentQueue)</span> &#123;</div><div class="line">                <span class="title">task</span><span class="params">()</span></div><div class="line">                <span class="title">dispatch_semaphore_signal</span><span class="params">(self.semaphore)</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>这一段代码是参考自苹果官方的 <a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW24" target="_blank" rel="external">Concurrency Programming Guide</a>. 而其中的解释要比我清晰一些: </p>
+<blockquote>
+<p>当我们创建信号量时, 可以针对特定的资源指定可用数量. 该变量可以在初始化信号量的时候进行赋值. 每次在我们等待(调用<code>wait</code>)的时候, <code>dispatch_semaphore_wait</code>方法会将该变量自减1. 如果自减后的结果为负数, 则该方法内部会通知内核阻塞该线程. 换句话说, <code>dispatch_semaphore_signal</code>方法则会将该变量自增1, 以表示该资源已经被释放, 可以使用. 如果此时有任务被阻塞, 且正在等待可用资源的话, 其中之一就会被释放开并被执行.</p>
+</blockquote>
+<ul>
+<li>这个机制比较类似于<code>NSOperationQueue</code>中的<code>maxConcurrentOperationCount</code>属性. 如果我们使用了 GCD 原生的队列取代了<code>NSOperationQueue</code>的话, 则可以使用信号量控制同时执行的block数量.</li>
+<li><p>感谢 <a href="http://dx13.co.uk/articles/2016/6/4/limiting-concurrent-execution-using-gcd.html" target="_blank" rel="external">Mike Rhodes</a> 的提醒, 这段代码可以被一个 <a href="https://gist.github.com/khanlou/c5664183cfa5505a4eb011656c2c0e46" target="_blank" rel="external">之前的版本</a> 优化. 他写道: </p>
+<blockquote>
+<p>我们使用并发队列来执行用户的任务, 并在该队列中执行 GCD 允许我们执行的数量的任务. 其中的关键在于第二个 GCD 队列. 该队列是一个串行队列, 对于之前的并发队列来说, 其扮演了一个守门员的角色. 我们在这个串行队列中等待信号量的发出, 这意味着当并发队列中的任务数量达到最大后, 我们也只有一个被阻塞的线程. 而其它被入队的任务则会在串行队列内部等待执行, 并且不会导致新线程被开启.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
   
   
 </search>
