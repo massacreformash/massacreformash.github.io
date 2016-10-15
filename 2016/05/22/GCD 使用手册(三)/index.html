@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="翻译,GCD," />
 
 
 
@@ -84,15 +84,25 @@
 
 
 
-<meta name="description" content="此身愿荷维摩病 永作婆娑无尽灯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MFMAL's Blog">
-<meta property="og:url" content="http://yoursite.com/tags/第三方框架/index.html">
+<meta name="description" content="接上篇
+
+将特定的数据队列化
+我们知道, NSThread对象拥有一个threadDictionary属性, 我们可以将任何有用的数据存储在这个字典中. 同样的, 在 GCD 的队列中, 使用dispatch_queue_set_specific和dispatch_get_specific方法, 我们也可以做相同的事情. 针对这个特性, 我还没有想到一个合适的应用场景, 不过 Benjamin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD 使用手册(三)">
+<meta property="og:url" content="http://yoursite.com/2016/05/22/GCD 使用手册(三)/index.html">
 <meta property="og:site_name" content="MFMAL's Blog">
-<meta property="og:description" content="此身愿荷维摩病 永作婆娑无尽灯">
+<meta property="og:description" content="接上篇
+
+将特定的数据队列化
+我们知道, NSThread对象拥有一个threadDictionary属性, 我们可以将任何有用的数据存储在这个字典中. 同样的, 在 GCD 的队列中, 使用dispatch_queue_set_specific和dispatch_get_specific方法, 我们也可以做相同的事情. 针对这个特性, 我还没有想到一个合适的应用场景, 不过 Benjamin">
+<meta property="og:updated_time" content="2016-10-15T16:48:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MFMAL's Blog">
-<meta name="twitter:description" content="此身愿荷维摩病 永作婆娑无尽灯">
+<meta name="twitter:title" content="GCD 使用手册(三)">
+<meta name="twitter:description" content="接上篇
+
+将特定的数据队列化
+我们知道, NSThread对象拥有一个threadDictionary属性, 我们可以将任何有用的数据存储在这个字典中. 同样的, 在 GCD 的队列中, 使用dispatch_queue_set_specific和dispatch_get_specific方法, 我们也可以做相同的事情. 针对这个特性, 我还没有想到一个合适的应用场景, 不过 Benjamin">
 
 
 
@@ -113,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/第三方框架/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/05/22/GCD 使用手册(三)/"/>
 
-  <title> 标签: 第三方框架 | MFMAL's Blog </title>
+  <title> GCD 使用手册(三) | MFMAL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +146,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,158 +267,196 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        第三方框架
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/04/模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类/" itemprop="url">
-              
-                <span itemprop="name">模拟SDWebImage异步下载图片操作(五) 抽取SDWebImage分类</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-04T19:46:25+08:00"
-              content="2016-08-04" >
-          08-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/03/模拟SDWebImage异步下载图片操作(四) 仿SDWebImage的操作/" itemprop="url">
-              
-                <span itemprop="name">模拟SDWebImage异步下载图片操作(四) 仿SDWebImage的操作</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-03T10:44:11+08:00"
-              content="2016-08-03" >
-          08-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/02/模拟SDWebImage异步下载图片操作(三)/" itemprop="url">
-              
-                <span itemprop="name">模拟SDWebImage异步下载图片操作(三)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-02T19:50:21+08:00"
-              content="2016-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/01/模拟SDWebImage异步下载图片操作(二)/" itemprop="url">
-              
-                <span itemprop="name">模拟SDWebImage异步下载图片操作(二)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-01T20:26:48+08:00"
-              content="2016-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/30/模拟SDWebImage异步下载图片操作(一)/" itemprop="url">
-              
-                <span itemprop="name">模拟SDWebImage异步下载图片操作(一)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-30T19:16:00+08:00"
-              content="2016-07-30" >
-          07-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GCD 使用手册(三)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-22T23:09:47+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/22/GCD 使用手册(三)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/GCD 使用手册(三)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/22/GCD 使用手册(三)/" class="leancloud_visitors" data-flag-title="GCD 使用手册(三)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>接上篇</p>
+</blockquote>
+<h3 id="将特定的数据队列化"><a href="#将特定的数据队列化" class="headerlink" title="将特定的数据队列化"></a>将特定的数据队列化</h3><blockquote>
+<p>我们知道, <code>NSThread</code>对象拥有一个<code>threadDictionary</code>属性, 我们可以将任何有用的数据存储在这个字典中. 同样的, 在 GCD 的队列中, 使用<code>dispatch_queue_set_specific</code>和<code>dispatch_get_specific</code>方法, 我们也可以做相同的事情. 针对这个特性, 我还没有想到一个合适的应用场景, 不过 Benjamin Encz 为我们提供了一个特殊的用法:<a href="http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/" target="_blank" rel="external">用来判断一个操作是否将在主队列中执行</a>:</p>
+</blockquote>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">let</span> mainQueueKey = UnsafeMutablePointer&lt;<span class="literal">Void</span>&gt;.alloc(<span class="number">1</span>)</div><div class="line"><span class="keyword">private</span> <span class="keyword">let</span> mainQueueValue = UnsafeMutablePointer&lt;<span class="literal">Void</span>&gt;.alloc(<span class="number">1</span>)</div><div class="line"></div><div class="line">dispatch_queue_set_specific(</div><div class="line">    dispatch_get_main_queue(), </div><div class="line">    mainQueueKey, </div><div class="line">    mainQueueValue, </div><div class="line">    nil</div><div class="line">)</div></pre></td></tr></table></figure>
+<ul>
+<li>现在, 我们可以使用<code>dispatch_get_specific(mainQueueKey) == mainQueueValue</code>来取代<code>[NSThread isMainThread]</code>方法, 以确定是否将在主队列中执行想要的操作(与<code>主线程</code>相比, <code>主队列</code>与它有很微妙的差别).</li>
+</ul>
+<h3 id="定时Dispatch-Source"><a href="#定时Dispatch-Source" class="headerlink" title="定时Dispatch Source"></a>定时<code>Dispatch Source</code></h3><blockquote>
+<p><code>dispatch source</code>是一个很怪异的类型, 如果你已经读到了整个手册的这一部分, 那么说明你已经来到了非常晦涩难懂的阶段. <code>dispatch source</code>, 是我们在初始化一个<code>dispatch source</code>时, 就设定好由某些特别事件触发的一个回调.</p>
+<p>最简单的一种事件, 就是定时器. 一个简单的定时器<code>dispatch source</code>可以如下设置:</p>
+</blockquote>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Timer</span> &#123;</span></div><div class="line">	<span class="keyword">let</span> timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, dispatch_get_main_queue())</div><div class="line">	</div><div class="line">	init<span class="function"><span class="params">(onFire: () -&gt; (), interval: UInt64, leeway: UInt64 = <span class="number">0.5</span> * NSEC_PER_SEC)</span> &#123;</span></div><div class="line">		<span class="title">dispatch_source_set_timer</span><span class="params">(timer, dispatch_walltime(NULL, <span class="number">0</span>), interval, leeway)</span></div><div class="line">		<span class="title">dispatch_source_set_event_handler</span><span class="params">(timer, onFire)</span></div><div class="line">		<span class="title">dispatch_resume</span><span class="params">(timer)</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>任意<code>dispatch source</code>在其开始执行前, 必须被显式地调用<code>resume</code>方法.</li>
+</ul>
+<h3 id="自定义Dispatch-Source"><a href="#自定义Dispatch-Source" class="headerlink" title="自定义Dispatch Source"></a>自定义<code>Dispatch Source</code></h3><blockquote>
+<p><code>dispatch source</code>另一个很有用处的地方是 <strong>custom dispatch source</strong>. 使用 custom dispatch source, 我们可以在任意时间触发它. 这个<code>dispatch source</code>会将我们发给它的信号合并, 并定期调用我们的事件处理方法(回调). 我在文档中没有找到任何关于这种合并的策略. 下面我给出一个例子, 一个对象将要添加一个从其它线程发来的数据: </p>
+</blockquote>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataAdder</span> &#123;</span></div><div class="line">	<span class="keyword">let</span> source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, <span class="number">0</span>, <span class="number">0</span>, dispatch_get_main_queue())</div><div class="line">	</div><div class="line">	init<span class="function"><span class="params">(onFire: (UInt64) -&gt; ())</span> &#123;</span></div><div class="line">		<span class="title">dispatch_source_set_event_handler</span><span class="params">(source, &#123; [unowned self] <span class="keyword">in</span></span></div><div class="line">			onFire(dispatch_source_get_data(self.source))</div><div class="line">		&#125;)</div><div class="line">		<span class="title">dispatch_resume</span><span class="params">(source)</span></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="title">func</span> <span class="title">addData</span><span class="params">(data: UInt64)</span> &#123;</div><div class="line">        <span class="title">dispatch_source_merge_data</span><span class="params">(source, data)</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这个<code>dispatch source</code>在初始化时, 定义了一个可以记录到现在为止所有已添加数据的 block. 我们可以在任意线程调用<code>addData</code>方法添加数据, 而<code>dispatch source</code>会为我们将数据添加并调用回调 block.</li>
+<li>我们也可以使用<code>DISPATCH_SOURCE_TYPE_DATA_OR</code>来替代<code>DISPATCH_SOURCE_TYPE_DATA_ADD</code>参数, 前者会对数据进行 <strong>二进制或</strong> 操作:</li>
+</ul>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataAdder</span> &#123;</span></div><div class="line">	<span class="keyword">let</span> source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_OR, <span class="number">0</span>, <span class="number">0</span>, dispatch_get_main_queue())</div><div class="line">	</div><div class="line">	init<span class="function"><span class="params">(onFire: (UInt64) -&gt; ())</span> &#123;</span></div><div class="line">		<span class="title">dispatch_source_set_event_handler</span><span class="params">(source, &#123; [unowned self] <span class="keyword">in</span></span></div><div class="line">			onFire(dispatch_source_get_data(self.source))</div><div class="line">		&#125;)</div><div class="line">		<span class="title">dispatch_resume</span><span class="params">(source)</span></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="title">func</span> <span class="title">mergeData</span><span class="params">(data: UInt64)</span> &#123;</div><div class="line">        <span class="title">dispatch_source_merge_data</span><span class="params">(source, data)</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>我们可以用这个场景来在多个线程中进行标记. 最重要的是, 这个<code>dispatch source</code>的数据会在每次 block 调用后置0.</li>
+<li>这些都是 GDC 中不为人知的细节, 我不知道在什么场景中可以应用上它们, 不过我相信当真正需要它们的时候, 我会庆幸它们的存在.</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>GCD 是一个拥有大量底层实现的框架. 上面这些, 就是我在工程中能够使用到 GCD 实际应用的地方. 如果还有哪些 GCD 的应用场景是你用到而被我疏漏的, 我很乐意倾听你的意见, 并将它们添加到列表中去.😁</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
+          
+            <a href="/tags/GCD/" rel="tag">#GCD</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/GCD 使用手册(二)/" rel="next" title="GCD 使用手册(二)">
+                <i class="fa fa-chevron-left"></i> GCD 使用手册(二)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/30/模拟SDWebImage异步下载图片操作(一)/" rel="prev" title="模拟SDWebImage异步下载图片操作(一)">
+                模拟SDWebImage异步下载图片操作(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -416,6 +464,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/22/GCD 使用手册(三)/"
+           data-title="GCD 使用手册(三)" data-url="http://yoursite.com/2016/05/22/GCD 使用手册(三)/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -435,8 +491,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -524,6 +589,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#将特定的数据队列化"><span class="nav-number">1.</span> <span class="nav-text">将特定的数据队列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时Dispatch-Source"><span class="nav-number">2.</span> <span class="nav-text">定时Dispatch Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义Dispatch-Source"><span class="nav-number">3.</span> <span class="nav-text">自定义Dispatch Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -627,6 +703,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
